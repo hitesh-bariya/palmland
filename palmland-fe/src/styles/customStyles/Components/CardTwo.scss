@@ -1,0 +1,59 @@
+.cardTwo__block {
+  width: 100%;
+  background-color: var(--secondary-color);
+  padding: 20px 20px 10px;
+  border-radius: 10px;
+  margin: 0px 0px 24px;
+  .cardTwo__image__border {
+    padding: 10px;
+    border: 2px solid var(--secondary-color-shade-two);
+    border-radius: 500px;
+    margin: 0px 0px 10px;
+    .cardTwo__image__block {
+      border-radius: 500px;
+      overflow: hidden;
+      .cardTwo__image {
+        width: 100%;
+      }
+    }
+  }
+  .agents__details__block {
+    .agents__name__listing__block {
+      display: flex;
+      justify-content: space-between;
+      .agents__name {
+        font-family: var(--primary-font-family);
+        font-size: 14px;
+        font-weight: var(--lato-regular);
+        margin: 0px;
+        color: #ffffff;
+      }
+      .agents__listing {
+        font-family: var(--primary-font-family);
+        font-size: 16px;
+        font-weight: var(--lato-bold);
+        margin: 0px;
+        color: var(--primary-color);
+      }
+    }
+  }
+  .agents__name__listing__block {
+    display: flex;
+    justify-content: space-between;
+    .agents__address {
+        font-family: var(--secondary-font-family);
+        font-size: 12px;
+        font-weight: var(--lato-regular);
+        margin: 0px;
+        color: var(--secondary-color-shade-two);
+    }
+    .agents__connects__icons__block {
+        margin: 0px;
+        display: flex;
+        align-items: center;
+        .agents__connects__icon{
+            margin-left: 10px;
+        }
+    }
+  }
+}

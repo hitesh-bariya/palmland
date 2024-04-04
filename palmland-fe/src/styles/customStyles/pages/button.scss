@@ -1,0 +1,117 @@
+.button__page {
+  margin: 100px 0px 0px;
+  padding: 50px;
+  background-color: #818181;
+  .button__block {
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    padding: 100px 0px;
+  }
+  .text__block {
+    // display: flex;
+  }
+}
+.p {
+  outline: none;
+  border: none;
+  border-radius: 5px;
+  color: var(--secondary-color);
+  background-color: var(--primary-color);
+  padding: 10px 20px;
+  transition: all 0.2s ease-out;
+  &:hover {
+    transition: all 0.2s ease-out;
+    box-shadow: 0px 5px 10px #00000020;
+  }
+}
+.p__bold {
+  outline: none;
+  border: none;
+  border-radius: 5px;
+  color: var(--secondary-color);
+  font-weight: var(--lato-bold);
+  background-color: var(--primary-color);
+  padding: 10px 20px;
+  transition: all 0.2s ease-out;
+  &:hover {
+    transition: all 0.2s ease-out;
+    box-shadow: 0px 5px 10px #00000020;
+  }
+}
+
+.s {
+  outline: none;
+  border: none;
+  border-radius: 5px;
+  color: var(--primary-color);
+  background-color: var(--secondary-color);
+  padding: 10px 20px;
+  transition: all 0.2s ease-out;
+  &:hover {
+    transition: all 0.2s ease-out;
+    box-shadow: 0px 5px 10px #00000020;
+  }
+}
+.p__white {
+  outline: none;
+  border: none;
+  border-radius: 5px;
+  color: #ffffff;
+  background-color: var(--primary-color);
+  padding: 10px 20px;
+  transition: all 0.2s ease-out;
+  &:hover {
+    transition: all 0.2s ease-out;
+    box-shadow: 0px 5px 10px #00000020;
+  }
+}
+.s__white {
+  outline: none;
+  border: none;
+  border-radius: 5px;
+  color: #ffffff;
+  background-color: var(--secondary-color);
+  padding: 10px 20px;
+  transition: all 0.2s ease-out;
+  &:hover {
+    transition: all 0.2s ease-out;
+    box-shadow: 0px 5px 10px #00000020;
+  }
+}
+.p__underline {
+  outline: none;
+  border: none;
+  font-size: 18px;
+  text-decoration: underline;
+  color: var(--primary-color);
+  font-weight: var(--lato-bold);
+  background: none;
+  transition: all 0.2s ease-out;
+}
+.s__underline {
+  outline: none;
+  border: none;
+  font-size: 18px;
+  text-decoration: underline;
+  color: var(--secondary-color);
+  font-weight: var(--lato-bold);
+  font-weight: var(--lato-bold);
+  background: none;
+  transition: all 0.2s ease-out;
+}
+
+@media only screen and (max-width: 768px) {
+  .p,
+  .p__bold,
+  .s,
+  .p__white,
+  .s__white {
+    font-size: 14px;
+    padding: 6px 16px;
+  }
+  .p__underline, .s__underline {
+    font-size: 16px;
+    padding: 6px 16px;
+  }
+}

@@ -1,0 +1,60 @@
+.cardThree__block {
+  &:hover {
+    transform: scale(1.02);
+    transition: transform 0.2s ease-out;
+    cursor: pointer;
+    box-shadow: 0px 0px 20px #00000020;
+  }
+
+  .cardThree__image__block {
+    // width: 100%;
+    // height: 300px;
+    // overflow: hidden;
+    // display: flex;
+    // justify-content: center;
+
+    .cardThree__image {
+      height: 100%;
+      width: 100%;
+      object-fit: cover;
+    }
+  }
+  .team__details__block {
+    .team__name__listing__block {
+      .team__name {
+        font-family: var(--primary-font-family);
+        font-size: 18px;
+        font-weight: var(--lato-regular);
+        margin: 0px;
+        color: #ffffff;
+      }
+      .team__listing {
+        font-family: var(--secondary-font-family);
+        font-size: 18px;
+        font-weight: var(--lato-regular);
+        margin: 0px;
+        color: var(--secondary-color-shade-two);
+      }
+    }
+  }
+}
+// @media only screen and (max-width:1400px){
+//   .cardThree__image__block{
+//     height: 250px !important;
+//   }
+
+// }
+// @media only screen and (max-width:992px){
+//   .cardThree__image__block{
+//     height: 200px !important;
+//   }
+
+// }
+// @media only screen and (max-width:768px){
+
+// }
+// @media only screen and (max-width:568px){
+//   .cardThree__image__block{
+//     height: 180px !important;
+//   }
+// }

@@ -1,0 +1,116 @@
+.cardOne__card__block {
+  min-width: 100%;
+  font-size: 30px;
+  overflow: hidden;
+  border-radius: 10px;
+  overflow: hidden;
+  background-color: #ffffff;
+  box-shadow: 0px 10px 10px #eee;
+  margin: 0px 30px 20px 0px;
+  .carousal__image__block {
+    width: 100%;
+    height: 200px;
+    overflow: hidden;
+    .slick-slider {
+      display: flex;
+      align-items: center;
+      height: 100%;
+      width: 100%;
+    }
+    .slick-list {
+      width: 100%;
+    }
+    .carousal__image {
+    }
+    .slick-next {
+      right: 10px;
+    }
+    .slick-prev {
+      left: 10px;
+      z-index: 1;
+    }
+  }
+  .cardOne__details__block {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 10px 0px;
+    .cardOne__property__details__block {
+      .cardOne__proprty__name {
+        font-family: var(--primary-font-family);
+        font-size: 20px;
+        font-weight: var(--lato-regular);
+        margin: 0px;
+        color: var(--secondary-color);
+      }
+      .cardOne__proprty__location {
+        font-family: var(--secondary-font-family);
+        font-size: 14px;
+        font-weight: var(--lato-light);
+        margin: 0px;
+        color: var(--secondary-color);
+      }
+    }
+    .cardOne__proprty__price {
+      font-family: var(--primary-font-family);
+      font-size: 20px;
+      font-weight: var(--lato-bold);
+      margin: 0px;
+      color: var(--primary-color);
+    }
+  }
+
+  .cardOne__property__facility__block {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    padding: 10px;
+    .cardOne__proprty__size {
+      font-family: var(--secondary-font-family);
+      font-size: 20px;
+      font-weight: var(--lato-light);
+      margin: 0px;
+      color: var(----secondary-color-shade-one);
+    }
+    .cardOne__proprty__amenities__block {
+      display: flex;
+      align-items: center;
+
+      .cardOne__proprty__amenity {
+        display: flex;
+        align-items: center;
+        margin: 0px 0px 0px 10px;
+        .cardOne__proprty__amenity__icon {
+        }
+        .cardOne__proprty__amenity__name {
+          font-family: var(--secondary-font-family);
+          font-size: 14px;
+          font-weight: var(--lato-light);
+          margin: 0px 0px 0px 10px;
+          color: var(--secondary-color);
+        }
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 992px) {
+  .carousal__image__block {
+    height: 150px !important;
+  }
+}
+@media screen and (max-width: 768px) {
+  .carousal__image__block {
+    height: 180px !important;
+  }
+  .cardOne__card__block {
+    min-width: 100% !important;
+    margin: 0px 20px 20px 0px !important;
+  }
+}
+@media screen and (max-width: 576px) {
+  .cardOne__card__block {
+    min-width: 100% !important;
+    margin: 0px 20px 20px 0px !important;
+  }
+}

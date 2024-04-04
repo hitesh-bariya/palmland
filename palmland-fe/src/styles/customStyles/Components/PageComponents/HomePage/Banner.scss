@@ -1,0 +1,19 @@
+.banner__block {
+  :where(video) {
+    max-width: fit-content !important;
+  }
+  .banner__field {
+    padding: 0px 8px;
+    border: 2px solid var(--secondary-color);
+    border-radius: 5px;
+    background: none;
+    color: var(--secondary-color);
+    // font-size: 16px;
+    &:focus {
+      outline: none;
+      border: 2px solid var(--secondary-color);
+      background: none;
+      color: var(--secondary-color);
+    }
+  }
+}

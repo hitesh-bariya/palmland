@@ -1,0 +1,16 @@
+spring:
+  jpa:
+    hibernate:
+      ddl-auto: update
+      naming:
+        physical-strategy: org.hibernate.boot.model.naming.PhysicalNamingStrategyStandardImpl
+    properties:
+      hibernate:
+        dialect=org:
+          hibernate:
+            dialect: org.hibernate.dialect.MariaDB103Dialect
+  datasource:
+    password: root
+    driver-class-name: org.mariadb.jdbc.Driver
+    username: root
+    url: jdbc:mariadb://localhost:3306/jwt_security?allowPublicKeyRetrieval=true&useSSL=false

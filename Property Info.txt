@@ -1,0 +1,20 @@
+Property Info
+- Property Name
+- Property Description
+- Price
+
+Address Details
+- Address Line 1
+- Address Line 2
+- Landmark
+- Pincode
+- location
+- Property Marquee
+   - FEATURED
+   - RECENT
+   - UPCOMING
+- Rooms
+
+- Property Type
+
+- model for Images

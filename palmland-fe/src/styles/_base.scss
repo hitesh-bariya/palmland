@@ -1,0 +1,92 @@
+@import "./customStyles/pages/homePage.scss";
+@import "./customStyles/pages/aboutPage.scss";
+@import "./customStyles/pages/servicesPage.scss";
+@import "./customStyles/pages/blogPage.scss";
+@import "./customStyles/pages/contactPage.scss";
+@import "./customStyles/pages/newsletterPage.scss";
+
+@import "./customStyles/pages/button.scss";
+@import "./customStyles/pages/text.scss";
+
+@import "slick-carousel/slick/slick.css";
+@import "slick-carousel/slick/slick-theme.css";
+
+@import "./customStyles/Model/models.scss";
+@import "./customStyles/Model/signInModel.scss";
+@import "./customStyles/Model/logoTourModel.scss";
+@import "./customStyles/Model/blogModel.scss";
+
+
+@import "./customStyles/Components/CommonComponents/Header.scss";
+@import "./customStyles/Components/CommonComponents/Footer.scss";
+
+@import "./customStyles/Components/PageComponents/HomePage/Banner.scss";
+@import "./customStyles/Components/PageComponents/HomePage/Corousal.scss";
+@import "./customStyles/Components/PageComponents/HomePage/Properties.scss";
+@import "./customStyles/Components/PageComponents/HomePage/Agents.scss";
+
+@import "./customStyles/Components/PageComponents/AboutUsPage/Team.scss";
+
+@import "./customStyles/Components/CardOne.scss";
+@import "./customStyles/Components/CardTwo.scss";
+@import "./customStyles/Components/CardThree.scss";
+.custom__container {
+  //   padding: var(--container-padding);
+  display: flex;
+  justify-content: center;
+  background-color: none;
+}
+@media only screen and (max-width: 1600px) {
+  .custom__container {
+    padding: 0px 0px;
+  }
+}
+@media only screen and (max-width: 1600px) {
+  .custom__container {
+    padding: 0px 0px;
+  }
+}
+
+.custom__row {
+  width: 80%;
+  padding: 0px 12px;
+}
+@media only screen and (max-width: 1600px) {
+  .custom__row {
+    width: 90%;
+  }
+}
+@media only screen and (max-width: 1400px) {
+  .custom__row {
+    width: 90%;
+  }
+}
+@media only screen and (max-width: 1200px) {
+}
+@media only screen and (max-width: 992px) {
+  .custom__row {
+    width: 95%;
+  }
+}
+@media only screen and (max-width: 768px) {
+  .custom__row {
+    width: 100%;
+    padding: 0px 20px;
+  }
+}
+@media only screen and (max-width: 576px) {
+  .custom__row {
+    padding: 0px 16px;
+  }
+}
+@media only screen and (max-width: 480px) {
+  .custom__row {
+    padding: 0px 10px;
+  }
+}
+@media only screen and (max-width: 440px) {
+}
+@media only screen and (max-width: 400px) {
+}
+@media only screen and (max-width: 375px) {
+}
