@@ -26,6 +26,10 @@ import {
 const GoogleBanner = () => {
   const router = useRouter();
   const dispatch = useDispatch();
+
+  const [query, setQuery] = useState('');
+  const [suggestions, setSuggestions] = useState([]);
+
   const [search, setSearch] = useState({
     city: "Dubai",
     state: {
@@ -46,7 +50,7 @@ const GoogleBanner = () => {
     setSearch({ ...search, state: "ALL" });
     dispatch(appActions.getStateList("231"));
   }, []);
-  const [suggestions, setSuggestions] = useState([]);
+ // const [suggestions, setSuggestions] = useState([]);
   const onChange = (e) => {
     const name = e.target.name;
     const value = e.target.value;
@@ -80,7 +84,7 @@ const GoogleBanner = () => {
   }, [search.state]);
 
   useEffect(() => {
-    if(search.country){
+    if (search.country) {
       dispatch(appActions.getStateList(search.country.id));
     }
   }, [search.country]);
@@ -112,6 +116,27 @@ const GoogleBanner = () => {
     };
     dispatch(searchProperty(JSON.stringify(payload)));
   };
+
+  const handleInputChange = (e) => {
+    const inputValue = e.target.value;
+    setQuery(inputValue);
+
+    if (inputValue.length > 2) {
+      fetchSuggestions(inputValue);
+    }
+  };
+
+
+  const fetchSuggestions = async (query) => {
+    try {
+      const res = await fetch(`/api/suggestions?query=${query}`);
+      const data = await res.json();
+      setSuggestions(data);
+    } catch (error) {
+      console.error('Error fetching suggestions:', error);
+    }
+  };
+
   return (
     <Box
       h={"600px"}
@@ -184,7 +209,7 @@ const GoogleBanner = () => {
                 gap={{ base: 2, lg: 4 }}
                 alignItems="flex-end"
               >
-               
+
 
                 <GridItem colSpan={{ base: 5, md: 1 }}>
                   <Box
@@ -200,7 +225,21 @@ const GoogleBanner = () => {
                     >
                       Location
                     </Text>
-                    <LocationSearch
+                    <input
+                      type="text"
+                      className="form__field"
+                      value={query}
+                      onChange={handleInputChange}
+                      placeholder="Type to get suggestions..."
+                    />
+
+                    <ul>
+                      {suggestions.map((suggestion, index) => (
+                        <li key={index}>{suggestion}</li>
+                      ))}
+                    </ul>
+
+                    {/*<LocationSearch
                       dropDown={dropDown}
                       currentState={search.state}
                       currentCity={search.city}
@@ -208,7 +247,7 @@ const GoogleBanner = () => {
                       suggestions={suggestions}
                       onLocationChange={onLocationChange}
                       onOptionSelect={onLocationOptionChange}
-                    />
+                    />*/}
                   </Box>
                 </GridItem>
                 <GridItem colSpan={{ base: 5, md: 1 }}>
