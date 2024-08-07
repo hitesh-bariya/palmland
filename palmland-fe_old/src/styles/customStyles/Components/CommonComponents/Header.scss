@@ -1,0 +1,17 @@
+.header__main__container {
+  .header__menu__icon {
+    cursor: pointer;
+    margin-left: 20px;
+    display: none;
+    height: 0px;
+    transition: all 0.5s smooth;
+  }
+}
+
+@media only screen and (max-width: 992px) {
+  .header__menu__icon {
+    display: block !important;
+    height: fit-content !important;
+    transition: all 0.5s smooth;
+  }
+}

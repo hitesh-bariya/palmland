@@ -1,0 +1,72 @@
+.form__field__block {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 0px;
+  position: relative;
+  margin: 0px 0px 10px;
+}
+.form__label {
+  font-family: var(--primary-font-family);
+  font-weight: var(--lato-regular);
+  font-size: 14px;
+  margin-bottom: 5px;
+  color: var(--secondary-color-shade-three);
+}
+.form__field {
+  padding: 6px 10px;
+  border: 2px solid var(--secondary-color-shade-one);
+  border-radius: 5px;
+  background: none;
+  font-size: 12px;
+  &:focus {
+    outline: none;
+    border: 2px solid var(--secondary-color-shade-two);
+    background: none;
+  }
+}
+.field__error__text {
+  color: var(--primary-color-shade-two);
+  font-size: 12px;
+  margin-top: 6px;
+}
+.password__eye__icon {
+  position: absolute;
+  top: 28px;
+  right: 10px;
+}
+
+option {
+  background-color: var(--primary-color);
+  color: var(--secondary-color);
+  &:hover {
+    color: var(--primary-color) !important;
+  }
+}
+
+.forgot__password {
+  font-size: 14px;
+  color: var(--primary-color-shade-two);
+}
+.signIn__button {
+  border: 2px solid var(--primary-color);
+  outline: none;
+  background: none;
+  color: var(--primary-color);
+  padding: 10px 30px;
+  font-family: var(--primary-font-family);
+  font-weight: var(--lato-bold);
+  margin-bottom: 50px;
+  border-radius: 3px;
+}
+.signUp__button {
+  border: 2px solid var(--primary-color);
+  outline: none;
+  background: none;
+  color: var(--primary-color);
+  padding: 10px 30px;
+  font-family: var(--primary-font-family);
+  font-weight: var(--lato-bold);
+  margin: 50px 0px 30px;
+  border-radius: 3px;
+}

@@ -26,10 +26,6 @@ import {
 const GoogleBanner = () => {
   const router = useRouter();
   const dispatch = useDispatch();
-
-  const [query, setQuery] = useState('');
-  const [suggestions, setSuggestions] = useState([]);
-
   const [search, setSearch] = useState({
     city: "Dubai",
     state: {
@@ -50,7 +46,7 @@ const GoogleBanner = () => {
     setSearch({ ...search, state: "ALL" });
     dispatch(appActions.getStateList("231"));
   }, []);
- // const [suggestions, setSuggestions] = useState([]);
+  const [suggestions, setSuggestions] = useState([]);
   const onChange = (e) => {
     const name = e.target.name;
     const value = e.target.value;
@@ -84,7 +80,7 @@ const GoogleBanner = () => {
   }, [search.state]);
 
   useEffect(() => {
-    if (search.country) {
+    if(search.country){
       dispatch(appActions.getStateList(search.country.id));
     }
   }, [search.country]);
@@ -116,27 +112,6 @@ const GoogleBanner = () => {
     };
     dispatch(searchProperty(JSON.stringify(payload)));
   };
-
-  const handleInputChange = (e) => {
-    const inputValue = e.target.value;
-    setQuery(inputValue);
-
-    if (inputValue.length > 2) {
-      fetchSuggestions(inputValue);
-    }
-  };
-
-
-  const fetchSuggestions = async (query) => {
-    try {
-      const res = await fetch(`/api/suggestions?query=${query}`);
-      const data = await res.json();
-      setSuggestions(data);
-    } catch (error) {
-      console.error('Error fetching suggestions:', error);
-    }
-  };
-
   return (
     <Box
       h={"600px"}
@@ -173,10 +148,11 @@ const GoogleBanner = () => {
           <Text
             variant={"p_bold"}
             color={"white"}
-            size={{ base: "28", lg: "36" }}
+            // size={{ base: "28", lg: "36" }}
+            style={{fontSize: "46px", fontWeight: "700", lineHeight: "72px" }}
             textAlign={"center"}
           >
-            Search Your Next Home
+            Find Your Next Home
           </Text>
           <Text
             variant={"s_light"}
@@ -184,15 +160,16 @@ const GoogleBanner = () => {
             size={{ base: "14", lg: "18" }}
             mb="10px"
             textAlign={"center"}
+            style={{fontSize: "17px", fontWeight: "400", lineHeight: "21.6px" }}
           >
-            Find new & featured property located in your local city.
+            Explore new & featured property located in your local city.
           </Text>
           <form
             onSubmit={handleSubmit}
             style={{ width: "100%", display: "flex", justifyContent: "center" }}
           >
             <Box
-              bgColor={colors.primary}
+              bgColor={colors.searchBackground}
               padding={{ base: "20px 20px", lg: "20px 20px 20px" }}
               borderRadius={"5px"}
               w={{
@@ -205,13 +182,12 @@ const GoogleBanner = () => {
               }}
             >
               <Grid
-                templateColumns="repeat(3, 1fr)"
+                templateColumns="repeat(4, 1fr)"
                 gap={{ base: 2, lg: 4 }}
                 alignItems="flex-end"
               >
-
-
-                <GridItem colSpan={{ base: 5, md: 1 }}>
+               
+               <GridItem colSpan={{ base: 5 , md: 1 }}>
                   <Box
                     display={"flex"}
                     flexDirection={"column"}
@@ -219,27 +195,13 @@ const GoogleBanner = () => {
                     className="banner__field__block"
                   >
                     <Text
-                      variant={"s_regular"}
+                      variant={"search_s_regular"}
                       size={{ base: "14", lg: "16" }}
                       mb="6px"
                     >
-                      Location
+                      City
                     </Text>
-                    <input
-                      type="text"
-                      className="form__field"
-                      value={query}
-                      onChange={handleInputChange}
-                      placeholder="Type to get suggestions..."
-                    />
-
-                    <ul>
-                      {suggestions.map((suggestion, index) => (
-                        <li key={index}>{suggestion}</li>
-                      ))}
-                    </ul>
-
-                    {/*<LocationSearch
+                    <LocationSearch
                       dropDown={dropDown}
                       currentState={search.state}
                       currentCity={search.city}
@@ -247,7 +209,7 @@ const GoogleBanner = () => {
                       suggestions={suggestions}
                       onLocationChange={onLocationChange}
                       onOptionSelect={onLocationOptionChange}
-                    />*/}
+                    />
                   </Box>
                 </GridItem>
                 <GridItem colSpan={{ base: 5, md: 1 }}>
@@ -258,7 +220,32 @@ const GoogleBanner = () => {
                     className="banner__field__block"
                   >
                     <Text
-                      variant={"s_regular"}
+                      variant={"search_s_regular"}
+                      size={{ base: "14", lg: "16" }}
+                      mb="6px"
+                    >
+                      Location
+                    </Text>
+                    <LocationSearch
+                      dropDown={dropDown}
+                      currentState={search.state}
+                      currentCity={search.city}
+                      searchLocation={search.location}
+                      suggestions={suggestions}
+                      onLocationChange={onLocationChange}
+                      onOptionSelect={onLocationOptionChange}
+                    />
+                  </Box>
+                </GridItem>
+                <GridItem colSpan={{ base: 5, md: 1 }}>
+                  <Box
+                    display={"flex"}
+                    flexDirection={"column"}
+                    w={"100%"}
+                    className="banner__field__block"
+                  >
+                    <Text
+                      variant={"search_s_regular"}
                       size={{ base: "14", lg: "16" }}
                       mb="6px"
                     >
@@ -284,11 +271,12 @@ const GoogleBanner = () => {
                 </GridItem>
                 <GridItem colSpan={{ base: 5, md: 1 }}>
                   <Button
-                    variant="secondary"
+                    variant="primary"
                     w={"100%"}
                     h={{ base: "30px", lg: "36px" }}
                     mt={{ base: "10px", lg: "0px" }}
                     onClick={handleSubmit}
+                    style={{marginBottom: "15px", color: "#fff"}}
                   >
                     Search
                   </Button>

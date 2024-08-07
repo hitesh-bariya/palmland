@@ -1,0 +1,14 @@
+.model__layout {
+  z-index: 12;
+  height: 100%;
+  padding: 50px 0px;
+  background-color: rgba(0, 0, 0, 0.699);
+  position: fixed;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.nonClickable{
+  pointer-events: none;
+}

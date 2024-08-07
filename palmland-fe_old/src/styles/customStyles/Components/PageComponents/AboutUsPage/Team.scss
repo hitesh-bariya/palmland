@@ -1,0 +1,17 @@
+.team__section__title {
+  font-family: var(--primary-font-family);
+  font-size: 24px;
+  font-weight: var(--lato-bold);
+  margin-bottom: 20px;
+}
+.team__card__container {
+  padding: 0;
+  .team__card__block {
+    justify-content: center !important;
+  }
+}
+// @media only screen and (max-width: 768px) {
+//   .team__card__block {
+//     justify-content: center !important;
+//   }
+// }

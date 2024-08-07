@@ -67,6 +67,11 @@ const Text: ComponentStyleConfig = {
       fontFamily: "Lato",
       fontWeight: 700,
     },
+    btn_p_bold: {
+      fontFamily: "Lato",
+      fontSize: "16px",
+      fontWeight: 400,
+    },
     s_light: {
       fontFamily: "Roboto",
       fontWeight: 300,
@@ -74,6 +79,11 @@ const Text: ComponentStyleConfig = {
     s_regular: {
       fontFamily: "Roboto",
       fontWeight: 400,
+    },
+    search_s_regular: {
+      fontFamily: "Roboto",
+      fontWeight: 400,
+      color: "#284D5C",
     },
     s_bold: {
       fontFamily: "Roboto",
