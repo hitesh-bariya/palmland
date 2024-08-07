@@ -161,7 +161,7 @@ const Header = () => {
                 m={"10px 0px 0px"}
                 w={"100%"}
               >
-                Logo Tour
+                Logo Tour Test
               </Text>
             </Box>
             <Box
