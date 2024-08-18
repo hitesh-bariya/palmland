@@ -7,7 +7,7 @@ export const getCountryList = () => {
     try {
       const config = {
         method: "get",
-        url: "http://13.48.137.241:80/api/v1/common/country",
+        url: "http://51.20.140.56:80/api/v1/common/country",
         headers: {
           "X-CSCAPI-KEY":
             "enhpbGRjV2FwSGV5b1c5YlllTWFramRtazdmY2dtU1BsZjN4ZUY4Rg==",
@@ -43,7 +43,7 @@ export const getStateList = (countryCode = 231) => {
     try {
       const config = {
         method: "get",
-        url: `http://13.48.137.241:80/api/v1/common/state/${countryCode}`,
+        url: `http://51.20.140.56:80/api/v1/common/state/${countryCode}`,
         headers: {
           "X-CSCAPI-KEY":
             "enhpbGRjV2FwSGV5b1c5YlllTWFramRtazdmY2dtU1BsZjN4ZUY4Rg==",
@@ -79,9 +79,9 @@ export const getCityList = (countryCode, stateCode) => {
     try {
       const config = {
         method: "get",
-        // http://13.48.137.241:80/api/v1/common/
+        // http://51.20.140.56:80/api/v1/common/
         // url: `https://api.countrystatecity.in/v1/countries/${countryCode}/states/${stateCode}/cities`,
-        url: `http://13.48.137.241:80/api/v1/common/city/${stateCode}`,
+        url: `http://51.20.140.56:80/api/v1/common/city/${stateCode}`,
         headers: {
           "X-CSCAPI-KEY":
             "enhpbGRjV2FwSGV5b1c5YlllTWFramRtazdmY2dtU1BsZjN4ZUY4Rg==",
