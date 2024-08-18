@@ -3,7 +3,7 @@ const nextConfig = {
   reactStrictMode: false,
 
   images: {
-    domains: ["palmland.s3.eu-north-1.amazonaws.com"],
+    domains: ["palmland-media.s3.eu-north-1.amazonaws.com"],
   },
 };
 

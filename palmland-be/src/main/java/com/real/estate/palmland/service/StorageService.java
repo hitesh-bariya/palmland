@@ -191,7 +191,7 @@ public class StorageService {
 
 	private void uploadFileTos3bucket(String fileName, File file) {
 		s3Client.putObject(
-				new PutObjectRequest(bucketName, fileName, file).withCannedAcl(CannedAccessControlList.PublicRead));
+				new PutObjectRequest(bucketName, fileName, file));
 	}
 
 	private void uploadFileToServert(MultipartFile multipartFile,String fileName) {
