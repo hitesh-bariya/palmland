@@ -53,18 +53,15 @@ export default function Home() {
           properties={properties}
           sectionTitle="Recent Properties"
         />
-        {/* <Corousal
-          containerClassName="featured__propeties__container"
-          sectionTitle="Featured Properties"
-          />
-          <Corousal
-          containerClassName="recent__propeties__container"
-          sectionTitle="Recent Properties"
-        /> */}
         <Properties
           loading={loading}
           properties={properties}
           sectionTitle="Upcoming Properties"
+        />
+         <Properties
+          loading={loading}
+          properties={properties}
+          sectionTitle="Our Popular Homes"
         />
         <Agents />
       </div>
