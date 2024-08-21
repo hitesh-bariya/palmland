@@ -129,45 +129,46 @@ const GoogleBanner = () => {
         position={"relative"}
         className="banner__block"
       >
-        <video height="600" autoPlay loop muted preload="yes">
+        {/* <video height="600" autoPlay loop muted preload="yes">
           <source
             src="/assets/videos/banner_video.mp4"
             type="video/mp4"
           ></source>
-        </video>
+        </video> */}
+        <img src="/assets/images/home-banner.png" height="539px" width="100%" alt="call" style={{filter: "brightness(20%)"}}></img>
         <Box
           position={"absolute"}
           display={"flex"}
           alignItems={"center"}
           flexDirection={"column"}
-          top={"50%"}
+          top={"40%"}
           left={"50%"}
           w={"80%"}
-          transform={"translate(-50%,-60%)"}
+          transform={"translate(-50%,-50%)"}
         >
           <Text
             variant={"p_bold"}
             color={"white"}
-            size={{ base: "28", lg: "36" }}
+            style={{fontSize: "46px", fontWeight: "700", lineHeight: "72px" }}
             textAlign={"center"}
           >
-            Search Your Next Home
+            Find Your Next Home
           </Text>
           <Text
             variant={"s_light"}
-            color={colors.secondary_color_shade_four}
-            size={{ base: "14", lg: "18" }}
+            color={"#FFFFFF"}
             mb="10px"
             textAlign={"center"}
+            style={{fontSize: "17px", lineHeight: "21.6px", letterSpacing: "3px", marginBottom: "25px"}}
           >
-            Find new & featured property located in your local city.
+            Explore new & featured property located in your local city.
           </Text>
           <form
             onSubmit={handleSubmit}
             style={{ width: "100%", display: "flex", justifyContent: "center" }}
           >
             <Box
-              bgColor={colors.primary}
+              bgColor={colors.searchBackground}
               padding={{ base: "20px 20px", lg: "20px 20px 20px" }}
               borderRadius={"5px"}
               w={{
@@ -192,9 +193,10 @@ const GoogleBanner = () => {
                     flexDirection={"column"}
                     w={"100%"}
                     className="banner__field__block"
+                    borderRight={"1px solid #284D5C"}
                   >
                     <Text
-                      variant={"s_regular"}
+                      variant={"search_s_regular"}
                       size={{ base: "14", lg: "16" }}
                       mb="6px"
                     >
@@ -219,7 +221,7 @@ const GoogleBanner = () => {
                     className="banner__field__block"
                   >
                     <Text
-                      variant={"s_regular"}
+                      variant={"search_s_regular"}
                       size={{ base: "14", lg: "16" }}
                       mb="6px"
                     >
@@ -234,6 +236,7 @@ const GoogleBanner = () => {
                       name="propetyType"
                       value={search.propetyType}
                       onChange={(e) => onChange(e)}
+                      style={{background: "transparent", border: "none", boxShadow: "none" ,color: "#eab258",appearance: "auto", paddingLeft: "0", width: "fit-content"}}
                     >
                       <option value="COMMERCIAL">Comercial </option>
                       <option value="RESIDANTIAL">Residantial </option>
@@ -245,18 +248,66 @@ const GoogleBanner = () => {
                 </GridItem>
                 <GridItem colSpan={{ base: 5, md: 1 }}>
                   <Button
-                    variant="secondary"
+                    variant="primary"
                     w={"100%"}
                     h={{ base: "30px", lg: "36px" }}
                     mt={{ base: "10px", lg: "0px" }}
                     onClick={handleSubmit}
+                    style={{marginBottom: "15px", color: "#fff"}}
                   >
-                    Search
+                    Search&nbsp;&nbsp;<img src="/assets/icons/search.png" alt="call" style={{height: "17px", width: "17px"}} class="search_icon"></img>
                   </Button>
                 </GridItem>
               </Grid>
             </Box>
           </form>
+        </Box>
+        <Box
+          position={"absolute"}
+          top={"85%"}
+          left={"50%"}
+          w={"60%"}
+          transform={"translate(-50%,-50%)"}
+        >
+          <Grid
+            templateColumns="repeat(3, 1fr)"
+            gap={{ base: 2, lg: 4 }}
+            alignItems="flex-end"
+          >  
+            <GridItem colSpan={{ base: 3 , md: 1 }}>
+              <Text
+                variant={"p_bold"}
+                color={"white"}
+                style={{textAlign: "center", fontWeight: "300"}}
+                textAlign={"center"}
+              >
+                <span style={{fontWeight: "800", fontSize: "23px", lineHeight: "20px", color: "#eab258"}}>1200 +</span><br></br>
+                Listed Properties
+              </Text>
+            </GridItem>
+            <GridItem colSpan={{ base: 3 , md: 1 }}>
+            <Text
+                variant={"p_bold"}
+                color={"white"}
+                style={{textAlign: "center", fontWeight: "300"}}
+                textAlign={"center"}
+              >
+                <span style={{fontWeight: "800", fontSize: "23px", lineHeight: "20px", color: "#eab258"}}>100 +</span><br></br>
+                Awards
+              </Text>
+            </GridItem>
+            <GridItem colSpan={{ base: 3 , md: 1 }}>
+            <Text
+                variant={"p_bold"}
+                color={"white"}
+                style={{textAlign: "center", fontWeight: "300"}}
+                textAlign={"center"}
+              >
+                <span style={{fontWeight: "800", fontSize: "23px", lineHeight: "20px", color: "#eab258"}}>1800 +</span><br></br>
+                Happy Customers
+              </Text>
+            </GridItem>
+          </Grid>
         </Box>
       </Box>
     </Box>

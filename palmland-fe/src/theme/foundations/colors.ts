@@ -1,6 +1,7 @@
 const colors = {
   textColor: "#000000", // Black color for
   primary: "#eab258",
+  searchBackground: "#09212B",
   primary_color_shade_one: "#feda85",
   primary_color_shade_two: "#f2d19b",
   primary_color_shade_three: "#f7e0bc",
