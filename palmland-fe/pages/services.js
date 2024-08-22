@@ -234,7 +234,7 @@ function services() {
               </Text>
               <div class="row" style={{paddingBottom: "60px"}}>
                 <div class="col-md-2">
-                  <img src="/assets/images/mohamed 2.png" alt="call" style={{border: "2px solid #EAB258", borderRadius: "25px"}}></img>
+                  <img src="/assets/images/profile.png" alt="call" style={{border: "2px solid #EAB258", borderRadius: "25px"}}></img>
                 </div>
                 <div class="col-md-10">
                   <Text
