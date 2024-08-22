@@ -20,14 +20,14 @@ const SingleBlog = ({ blog }) => {
         colSpan={{ base: 12, md: 12, lg: 5 }}
         h={{ base: "200px", lg: "100%" }}
       >
-        {/* <Box overflow="hidden" height="100%">
+         <Box overflow="hidden" height="100%">
           <Image
             height={{ base: "200px", md: "100%" }}
             width={"100%"}
-            src={`/assets/images/blog_0${blog.blogImage}.jpg`}
+            src={blog.imageKey}
             objectFit="cover"
           />
-        </Box> */}
+        </Box> 
       </GridItem>
       <GridItem
         colSpan={{ base: 12, md: 12, lg: 7 }}
@@ -88,7 +88,7 @@ const SingleBlog = ({ blog }) => {
             noOfLines={3}
             //   isTruncated
           >
-            {blog.description}
+            {blog.content}
           </Text>
         </Box>
         <Box display="flex" justifyContent="space-between">
