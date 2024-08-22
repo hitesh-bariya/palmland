@@ -192,12 +192,18 @@ const Header = () => {
                   </>
                 );
               })}
-            </Box>
+              
+              <Text
+                margin="0px 0px 0px 114px"
+              >
+              </Text>
+
+            {/* </Box>
             <Box
               display={"flex"}
               justifyContent={"space-between"}
               alignItems={"center"}
-            >
+            > */}
               {/* <Text variant={"p_bold"} color={"white"}>
                 <Text
                   color={"white"}
