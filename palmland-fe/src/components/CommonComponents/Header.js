@@ -18,20 +18,15 @@ export const navLinks = [
     path: "/",
     accesTo: ["USER"],
   },
-  {
-    text: "About",
-    path: "/about",
-    accesTo: ["USER"],
-  },
+  // {
+  //   text: "About",
+  //   path: "/about",
+  //   accesTo: ["USER"],
+  // },
   {
     text: "Services",
     path: "/services",
     accesTo: ["USER"],
-  },
-  {
-    text: "Blog",
-    path: "/blog",
-    accesTo: ["USER", "DEALER"],
   },
   {
     text: "News Letter",
@@ -39,10 +34,15 @@ export const navLinks = [
     accesTo: ["USER", "DEALER"],
   },
   {
-    text: "Contact",
-    path: "/contact",
+    text: "Blog",
+    path: "/blog",
     accesTo: ["USER", "DEALER"],
   },
+  // {
+  //   text: "Contact",
+  //   path: "/contact",
+  //   accesTo: ["USER", "DEALER"],
+  // },
   {
     text: "Post Property",
     path: "/postProperty",
@@ -145,13 +145,13 @@ const Header = () => {
             >
               <Link href="/">
                 <img
-                  width="60px"
+                  width="218px"
                   height="auto"
-                  src="/assets/images/yellow_palm_land_logo.svg"
+                  src="/assets/images/logo.png"
                   alt="header-logo"
                 />
               </Link>
-              <Text
+              {/* <Text
                 cursor={"pointer"}
                 onClick={openLogoTourModel}
                 variant={"p_light"}
@@ -162,11 +162,11 @@ const Header = () => {
                 w={"100%"}
               >
                 Logo Tour
-              </Text>
+              </Text> */}
             </Box>
             <Box
               display={{ base: "none", lg: "flex" }}
-              justifyContent={"space-between"}
+              justifyContent={"space-between-end"}
               alignItems={"center"}
             >
               {navLinks.map((list) => {
@@ -181,7 +181,7 @@ const Header = () => {
                         <Text
                           color={pathname === list.path ? "#ffffff" : "#eab258"}
                           size="16"
-                          variant="p_bold"
+                          variant="btn_p_bold"
                         >
                           {list.text}
                         </Text>
