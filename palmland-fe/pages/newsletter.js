@@ -16,7 +16,7 @@ const newsletter = () => {
   return (
     <div class="newsletter_page">
       <Box className="custom__container about__page">
-        <Box className="custom__row">
+        <Box className="custom__row newsletter-slider">
           <Box m={{ base: "20px 0px", lg: "30px 0px" }}>
             <Box
               display="flex"
