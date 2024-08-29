@@ -42,7 +42,7 @@ function Properties({ sectionTitle, properties, loading }) {
             alignItems={"center"}
             justifyContent={"center"}
           >
-            {!loading && properties.length === 0 ? (
+            {!loading && (properties?.length ?? 0) === 0 ? (
               <p className="properties__title">{`No property`}</p>
             ) : (
               <Spinner size="xl" />

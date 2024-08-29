@@ -18,6 +18,7 @@ import {
 import Autocomplete from "react-google-autocomplete";
 
 const LocationSearch = ({
+  dropDown,
   currentState,
   currentCity,
   searchLocation,

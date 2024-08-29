@@ -35,6 +35,23 @@ export default function Home() {
     searchProperty(data,setProperties, setLoading);
   }, []);
 
+  const handleChildSubmit = (searchData) => {
+
+    const data = {
+      dataOption: "all",
+      searchCriteriaList: []
+    };
+
+    if (searchData.propetyType) {
+      data.searchCriteriaList.push({
+        filterKey: "propertyType",
+        value: searchData.propetyType,
+        operation: "eq"
+      });
+    }
+      searchProperty(data,setProperties, setLoading);
+};
+
   return (
     <>
       <Head>
@@ -46,7 +63,7 @@ export default function Home() {
 
       <div className="home__page">
         {/* <Banner /> */}
-        <GoogleBanner />
+        <GoogleBanner onSubmit={handleChildSubmit} />
 
         <Properties
           loading={loading}
