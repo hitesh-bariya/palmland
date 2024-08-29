@@ -6,7 +6,7 @@ export const postPropertyData = async (data, callback) => {
   const authToken = localStorage.getItem("token");
   try {
     let response = await axios
-      .post(`${apiURL}property/create-property`, data, {
+      .post(`${apiURL}property/create`, data, {
         headers: {
           "Content-Type": "multipart/form-data",
           Authorization: `Bearer ${authToken}`,

@@ -157,9 +157,70 @@ public class PropertyServiceImpl implements PropertyService {
 	}
 
 	@Override
-	public Page<Property> findBySearchCriteria(Specification<Property> spec, Pageable page) {
+	public ResponseVO<List<PropertyDto>> findBySearchCriteria(Specification<Property> spec, Pageable page) {
+		
+		ResponseVO<List<PropertyDto>> response=new ResponseVO<List<PropertyDto>>();
+		
 		Page<Property> searchResult = propertyRepository.findAll(spec, page);
-		return searchResult;
+		
+		if(!searchResult.isEmpty()) {
+			List<Property> properties=searchResult.toList();
+			
+			List<PropertyDto> propertyDtoList = new ArrayList<>();
+			for (Property property : properties) {
+				PropertyDto propertyDto = new PropertyDto();
+				LocationDto locationDto = new LocationDto();
+				AmenitiesDto amenitiesDto = new AmenitiesDto();
+
+				propertyDto.setPropertyName(property.getPropertyName());
+				propertyDto.setPropertyDesc(property.getPropertyDesc());
+				propertyDto.setPropertyType(property.getPropertyType());
+				propertyDto.setPropertyMarquee(property.getPropertyMarquee());
+				propertyDto.setPrice(property.getPrice());
+				propertyDto.setId(property.getId());
+				List<ImageDto> imageData = new ArrayList<>();
+				List<Image> imageList = imageRepository.findByProperty(property);
+
+				if ((null != imageList) && imageList.size() > 0) {
+					for (Image image : imageList) {
+						ImageDto img = new ImageDto();
+						img.setId(image.getId());
+						img.setName(image.getName());
+						img.setType(image.getType());
+						img.setPath(awsURL + "/" + image.getPath().replaceAll("@", "%40"));
+						imageData.add(img);
+					}
+
+				}
+				if (!imageData.isEmpty()) {
+					propertyDto.setImgData(imageData);
+				}
+
+				if (property.getLocation() != null) {
+					locationDto.setId(property.getLocation().getId());
+					locationDto.setAddressLine1(property.getLocation().getAddressLine1());
+					locationDto.setAddressLine2(property.getLocation().getAddressLine2());
+					locationDto.setCity(property.getLocation().getCity());
+					locationDto.setState(property.getLocation().getState());
+					locationDto.setCountry(property.getLocation().getCountry());
+					locationDto.setPinCode(property.getLocation().getPinCode());
+					locationDto.setLandMark(property.getLocation().getLandMark());
+					propertyDto.setLocation(locationDto);
+				}
+				if (property.getAmenities() != null) {
+					amenitiesDto.setId(property.getAmenities().getId());
+					amenitiesDto.setRooms(property.getAmenities().getRooms());
+					propertyDto.setAmenities(amenitiesDto);
+				}
+				propertyDtoList.add(propertyDto);
+			}
+			response.setStatus(200);
+			response.setData(propertyDtoList);		
+		}
+
+
+		return response;
+
 	}
 
 	@Override
