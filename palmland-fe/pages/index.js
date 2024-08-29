@@ -10,6 +10,7 @@ import { useDispatch } from "react-redux";
 import {
   getAllProperty,
   getPropertyData,
+  searchProperty
 } from "@/stores/Property/propertyAction";
 import { Box, Center, Spinner } from "@chakra-ui/react";
 const settings = {
@@ -27,7 +28,11 @@ export default function Home() {
   const [loading, setLoading] = useState(true);
   useEffect(() => {
     // getAllProperty(setProperties, setLoading);
-    getPropertyData(setProperties, setLoading);
+    const data={
+    dataOption: "all",
+    searchCriteriaList: []
+    }
+    searchProperty(data,setProperties, setLoading);
   }, []);
 
   return (

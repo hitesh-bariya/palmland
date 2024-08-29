@@ -4,7 +4,7 @@ import axios from "axios";
 // const apiURL = process.env.NEXT_PUBLIC_API_BASE_URL;
 const apiURL = process.env.NEXT_PUBLIC_API_BASE_URL;
 
-export const searchProperty = (data) => {
+export const searchProperty1 = (data) => {
   const authToken = localStorage.getItem("token");
   return async (dispatch) => {
     try {
@@ -62,5 +62,25 @@ export const getPropertyData = (successCallback, setLoading) => {
     })
     .catch((err) => {
       console.log(err);
+    });
+};
+
+export const searchProperty = (data, successCallback, setLoading) => {
+  apiHelper(`${apiURL}property/search`, "post", data, {
+      headers: {
+        "Content-Type": "application/json",
+      }
+    })
+    .then((res) => {
+      successCallback(res.data.data);
+      if (setLoading) {
+        setLoading(false);
+      }
+    })
+    .catch((err) => {
+      console.error("Error:", err);
+      if (setLoading) {
+        setLoading(false); // Ensure loading state is reset even if an error occurs
+      }
     });
 };
