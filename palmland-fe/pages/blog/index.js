@@ -71,7 +71,7 @@ const blog = () => {
                 <div>              
                   <div class="row">
                     <div class="col-md-6" style={{paddingRight: "30px"}}>
-                      <img src="/assets/images/home-banner.png" 
+                      <img src={blog.imageKey}
                       height="100%" 
                       width="100%" 
                       alt="call" 
@@ -83,7 +83,7 @@ const blog = () => {
                         style={{fontSize: "23px", lineHeight: "27px"}}
                         mb={{ base: "10px", lg: "20px" }}
                       >
-                        {blog.heading}
+                        {blog.heading} ({blog.author})
                       </Text>
                       <Text
                         variant="blog_text"
