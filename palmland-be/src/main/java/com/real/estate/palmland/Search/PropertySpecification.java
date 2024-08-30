@@ -35,50 +35,50 @@ public class PropertySpecification implements
 
         switch(Objects.requireNonNull(SearchOperation.getSimpleOperation(searchCriteria.getOperation()))){
             case CONTAINS:
-                if(searchCriteria.getFilterKey().equals("addressLine1") || searchCriteria.getFilterKey().equals("country")){
+                if(searchCriteria.getFilterKey().equals("addressLine1") || searchCriteria.getFilterKey().equals("city")){
                     return cb.like(cb.lower(locationJoin(root).<String>get(searchCriteria.getFilterKey())), "%" + strToSearch + "%");
                 }
                 return cb.like(cb.lower(root.get(searchCriteria.getFilterKey())), "%" + strToSearch + "%");
 
             case DOES_NOT_CONTAIN:
-                if(searchCriteria.getFilterKey().equals("addressLine1") || searchCriteria.getFilterKey().equals("country")){
+                if(searchCriteria.getFilterKey().equals("addressLine1") || searchCriteria.getFilterKey().equals("city")){
                     return cb.notLike(cb.lower(locationJoin(root).<String>get(searchCriteria.getFilterKey())), "%" + strToSearch + "%");
                 }
                 return cb.notLike(cb.lower(root.get(searchCriteria.getFilterKey())), "%" + strToSearch + "%");
 
             case BEGINS_WITH:
-                if(searchCriteria.getFilterKey().equals("addressLine1") || searchCriteria.getFilterKey().equals("country")){
+                if(searchCriteria.getFilterKey().equals("addressLine1") || searchCriteria.getFilterKey().equals("city")){
                     return cb.like(cb.lower(locationJoin(root).<String>get(searchCriteria.getFilterKey())), strToSearch + "%");
                 }
                 return cb.like(cb.lower(root.get(searchCriteria.getFilterKey())), strToSearch + "%");
 
             case DOES_NOT_BEGIN_WITH:
-                if(searchCriteria.getFilterKey().equals("addressLine1") || searchCriteria.getFilterKey().equals("country")){
+                if(searchCriteria.getFilterKey().equals("addressLine1") || searchCriteria.getFilterKey().equals("city")){
                     return cb.notLike(cb.lower(locationJoin(root).<String>get(searchCriteria.getFilterKey())), strToSearch + "%");
                 }
                 return cb.notLike(cb.lower(root.get(searchCriteria.getFilterKey())), strToSearch + "%");
 
             case ENDS_WITH:
-                if(searchCriteria.getFilterKey().equals("addressLine1") || searchCriteria.getFilterKey().equals("country")){
+                if(searchCriteria.getFilterKey().equals("addressLine1") || searchCriteria.getFilterKey().equals("city")){
                     return cb.like(cb.lower(locationJoin(root).<String>get(searchCriteria.getFilterKey())), "%" + strToSearch);
                 }
                 return cb.like(cb.lower(root.get(searchCriteria.getFilterKey())), "%" + strToSearch);
 
             case DOES_NOT_END_WITH:
-                if(searchCriteria.getFilterKey().equals("addressLine1") || searchCriteria.getFilterKey().equals("country")){
+                if(searchCriteria.getFilterKey().equals("addressLine1") || searchCriteria.getFilterKey().equals("city")){
                     return cb.notLike(cb.lower(locationJoin(root).<String>get(searchCriteria.getFilterKey())), "%" + strToSearch);
                 }
                 return cb.notLike(cb.lower(root.get(searchCriteria.getFilterKey())), "%" + strToSearch);
 
             case EQUAL:
-                if(searchCriteria.getFilterKey().equals("addressLine1") || searchCriteria.getFilterKey().equals("country")){
+                if(searchCriteria.getFilterKey().equals("addressLine1") || searchCriteria.getFilterKey().equals("city")){
                     System.out.println(searchCriteria.getValue());
                     return cb.equal(locationJoin(root).<String>get(searchCriteria.getFilterKey()), searchCriteria.getValue());
                 }
                 return cb.equal(root.get(searchCriteria.getFilterKey()), searchCriteria.getValue());
 
             case NOT_EQUAL:
-                if(searchCriteria.getFilterKey().equals("addressLine1") || searchCriteria.getFilterKey().equals("country")){
+                if(searchCriteria.getFilterKey().equals("addressLine1") || searchCriteria.getFilterKey().equals("city")){
                     return cb.notEqual(locationJoin(root).<String>get(searchCriteria.getFilterKey()), searchCriteria.getValue() );
                 }
                 return cb.notEqual(root.get(searchCriteria.getFilterKey()), searchCriteria.getValue());

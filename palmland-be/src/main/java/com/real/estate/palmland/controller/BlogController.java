@@ -47,7 +47,7 @@ public class BlogController {
 			@RequestParam(value = "files", required = true) @Valid MultipartFile files) throws IOException {
 		BlogRequest blogRequest = objectMapper.readValue(jsondata, BlogRequest.class);
 		Blog blog = prepareEntityObject(blogRequest, files);
-		return blogService.create(files,blog);
+		return blogService.create(files, blog);
 	}
 
 	@GetMapping("/all")
@@ -71,8 +71,7 @@ public class BlogController {
 		blog.setPostedDate(new Date());
 		return blog;
 	}
-	
-	
+
 	@PostMapping("/likes")
 	public ResponseEntity<Blog> blockLikes(@RequestBody BlogLikeRequest blogLikeRequest) {
 		return new ResponseEntity<>(blogService.blogLikes(blogLikeRequest), HttpStatus.OK);

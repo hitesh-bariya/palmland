@@ -32,54 +32,57 @@ import jakarta.validation.Valid;
 @RestController
 @RequestMapping("/api/v1/property1")
 public class PropertyController1 {
-    private static final Logger LOGGER = LoggerFactory.getLogger(PropertyController1.class);
-    @Autowired
-    private PropertyService propertyService;
+	private static final Logger LOGGER = LoggerFactory.getLogger(PropertyController1.class);
+	@Autowired
+	private PropertyService propertyService;
 
-    @Autowired
-    private ObjectMapper objectMapper;
+	@Autowired
+	private ObjectMapper objectMapper;
 
-    @Autowired
-    private UserRepository repository;
+	@Autowired
+	private UserRepository repository;
 
-    @Autowired
-    private StorageService storageService;
+	@Autowired
+	private StorageService storageService;
 
-    @PostMapping(value = "/createProperty", consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
-    public ResponseEntity<PropertyDto> createProperty(@RequestParam(value = "jsondata", required = true) @Valid String jsondata,
-                                                      @RequestParam(value = "files", required = true) @Valid MultipartFile[] files) throws URISyntaxException, IOException {
-        LOGGER.info("Creating the new Property!!!");
-        PropertyDto readValue = objectMapper.readValue(jsondata, PropertyDto.class);
-        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-        Object authenticationPrincipal = authentication.getPrincipal();
-        String userName = null;
-        if (authenticationPrincipal instanceof UserDetails) {
-            userName = ((UserDetails) authenticationPrincipal).getUsername();
-            LOGGER.info("Logged in user", userName);
-        } else {
-            userName = authenticationPrincipal.toString();
-            LOGGER.info("Logged in user", userName);
-        }
-        LOGGER.info("Called findByEmail");
-        var user = repository.findByEmail(userName);
-        var image =new Image();
-        List<Image> images=composePathFromRequestData(files, readValue,image,userName);
+	@PostMapping(value = "/createProperty", consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
+	public ResponseEntity<PropertyDto> createProperty(
+			@RequestParam(value = "jsondata", required = true) @Valid String jsondata,
+			@RequestParam(value = "files", required = true) @Valid MultipartFile[] files)
+			throws URISyntaxException, IOException {
+		LOGGER.info("Creating the new Property!!!");
+		PropertyDto readValue = objectMapper.readValue(jsondata, PropertyDto.class);
+		Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+		Object authenticationPrincipal = authentication.getPrincipal();
+		String userName = null;
+		if (authenticationPrincipal instanceof UserDetails) {
+			userName = ((UserDetails) authenticationPrincipal).getUsername();
+			LOGGER.info("Logged in user", userName);
+		} else {
+			userName = authenticationPrincipal.toString();
+			LOGGER.info("Logged in user", userName);
+		}
+		LOGGER.info("Called findByEmail");
+		var user = repository.findByEmail(userName);
+		var image = new Image();
+		List<Image> images = composePathFromRequestData(files, readValue, image, userName);
 
-return null;
-    }
+		return null;
+	}
 
-    private List<Image> composePathFromRequestData(MultipartFile[] files, PropertyDto readValue, Image image,String userName) {
-        List<Image> imageList=new ArrayList<>();
-        if(userName !=null && readValue !=null && readValue.getPropertyName()!=null){
+	private List<Image> composePathFromRequestData(MultipartFile[] files, PropertyDto readValue, Image image,
+			String userName) {
+		List<Image> imageList = new ArrayList<>();
+		if (userName != null && readValue != null && readValue.getPropertyName() != null) {
 
-        }
-        Arrays.asList(files).stream().forEach(file ->{
-            String storagePath=userName+"\\"+readValue.getPropertyName()+"\\"+readValue.getPropertyMarquee();
-            image.setPath(storagePath);
-            image.setName(file.getOriginalFilename());
-            image.setType(file.getOriginalFilename().substring(file.getOriginalFilename().lastIndexOf('.')));
-            imageList.add(image);
-        });
-        return imageList;
-    }
+		}
+		Arrays.asList(files).stream().forEach(file -> {
+			String storagePath = userName + "\\" + readValue.getPropertyName() + "\\" + readValue.getPropertyMarquee();
+			image.setPath(storagePath);
+			image.setName(file.getOriginalFilename());
+			image.setType(file.getOriginalFilename().substring(file.getOriginalFilename().lastIndexOf('.')));
+			imageList.add(image);
+		});
+		return imageList;
+	}
 }
