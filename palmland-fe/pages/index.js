@@ -10,6 +10,7 @@ import { useDispatch } from "react-redux";
 import {
   getAllProperty,
   getPropertyData,
+  searchProperty
 } from "@/stores/Property/propertyAction";
 import { Box, Center, Spinner } from "@chakra-ui/react";
 const settings = {
@@ -27,8 +28,29 @@ export default function Home() {
   const [loading, setLoading] = useState(true);
   useEffect(() => {
     // getAllProperty(setProperties, setLoading);
-    getPropertyData(setProperties, setLoading);
+    const data={
+    dataOption: "all",
+    searchCriteriaList: []
+    }
+    searchProperty(data,setProperties, setLoading);
   }, []);
+
+  const handleChildSubmit = (searchData) => {
+
+    const data = {
+      dataOption: "all",
+      searchCriteriaList: []
+    };
+
+    if (searchData.propetyType) {
+      data.searchCriteriaList.push({
+        filterKey: "propertyType",
+        value: searchData.propetyType,
+        operation: "eq"
+      });
+    }
+      searchProperty(data,setProperties, setLoading);
+};
 
   return (
     <>
@@ -41,7 +63,7 @@ export default function Home() {
 
       <div className="home__page">
         {/* <Banner /> */}
-        <GoogleBanner />
+        <GoogleBanner onSubmit={handleChildSubmit} />
 
         <Properties
           loading={loading}

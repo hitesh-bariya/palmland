@@ -89,6 +89,14 @@ const Text: ComponentStyleConfig = {
       fontFamily: "Roboto",
       fontWeight: 500,
     },
+    newsletter_header: {
+      fontFamily: "Lato",
+      fontWeight: 700,
+    },
+    newsetter_text: {
+      fontFamily: "Roboto",
+      fontWeight: 400,
+    },
   },
 
   // default values for `size` and `variant`

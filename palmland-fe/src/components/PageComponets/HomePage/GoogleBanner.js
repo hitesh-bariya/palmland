@@ -23,7 +23,7 @@ import {
   getAllProperty,
   searchProperty,
 } from "@/stores/Property/propertyAction";
-const GoogleBanner = () => {
+const GoogleBanner = ({ onSubmit }) => {
   const router = useRouter();
   const dispatch = useDispatch();
   const [search, setSearch] = useState({
@@ -35,7 +35,7 @@ const GoogleBanner = () => {
     },
     country: "AE",
     location: "",
-    propertyType: "COMMERCIAL",
+    propertyType: "Plots",
   });
   const [dropDown, setDropdown] = useState(false);
   useEffect(() => {
@@ -85,32 +85,9 @@ const GoogleBanner = () => {
     }
   }, [search.country]);
 
-  // useEffect(() => {
-  //   const predictions = getAdress(search.location).then((res) => {
-  //     const data = res.predictions.map((pre) => pre.description);
-  //     setSuggestions(data);
-  //   });
-  // }, [search.location]);
   const handleSubmit = () => {
-    setSearch({
-      country: "",
-      state: "ALL",
-      city: "Dubai",
-    });
-
-    const payload = {
-      dataOption: "all",
-      searchCriteriaList: [
-        {
-          filterKey: "propertyType",
-          value: "",
-          operation: "eq",
-        },
-        { filterKey: "propertyName", value: "Bunglow Test 1", operation: "eq" },
-        { filterKey: "country", value: "UAE", operation: "eq" },
-      ],
-    };
-    dispatch(searchProperty(JSON.stringify(payload)));
+    onSubmit(search);
+    
   };
   return (
     <Box
@@ -238,7 +215,7 @@ const GoogleBanner = () => {
                       onChange={(e) => onChange(e)}
                       style={{background: "transparent", border: "none", boxShadow: "none" ,color: "#eab258",appearance: "auto", paddingLeft: "0", width: "fit-content"}}
                     >
-                      <option value="COMMERCIAL">Comercial </option>
+                      <option value="COMERCIAL">Comercial </option>
                       <option value="RESIDANTIAL">Residantial </option>
                       <option value="FREE/HOLD,">Free/Hold </option>
                       <option value="NON FREE HOLD">Non Free Hold </option>

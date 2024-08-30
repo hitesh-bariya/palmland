@@ -7,7 +7,6 @@ export const getUserData = (successCallback, setLoading) => {
   apiHelper(`${apiURL}admin/get-user`, "get", null, {})
     .then((res) => {
       console.log(res.data);
-      debugger
       successCallback(res.data);
       if (setLoading) {
         setLoading(false);

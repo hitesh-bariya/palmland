@@ -130,11 +130,10 @@ public class PropertyController {
         return imageList;
     }
     @PostMapping("/search")
-    public ResponseEntity<SearchResponse> searchProperty(@RequestParam(name = "pageNum", defaultValue = "0") int pageNum,
+    public ResponseVO<List<PropertyDto>> searchProperty(@RequestParam(name = "pageNum", defaultValue = "0") int pageNum,
                                                           @RequestParam(name = "pageSize", defaultValue = "10") int pageSize,
                                                           @RequestParam(defaultValue = "id") String sortBy,
                                                           @RequestBody PropertySearchDto propertySearchDto){
-        SearchResponse searchResponse = new SearchResponse();
         PropSpecificationBuilder builder = new PropSpecificationBuilder();
         List<SearchCriteria> criteriaList = propertySearchDto.getSearchCriteriaList();
         if(criteriaList != null){
@@ -147,11 +146,8 @@ public class PropertyController {
                 .ascending().and(Sort.by("propertyType"))
                 .ascending().and(Sort.by("location")).ascending());
 
-        Page<Property> propertyPage = propertyService.findBySearchCriteria(builder.build(), page);
-        searchResponse.setData(propertyPage.toList());
-        searchResponse.setResponseCode(HttpStatus.OK);
-        searchResponse.setMessage("Successfully retrieved property record");
-        return new ResponseEntity<>(searchResponse, searchResponse.getResponseCode());
+
+        return propertyService.findBySearchCriteria(builder.build(), page);
     }
     
     @DeleteMapping(value = "/delete")

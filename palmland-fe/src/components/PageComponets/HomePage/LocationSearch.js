@@ -1,23 +1,9 @@
-import { useEffect, useRef, useState } from "react";
-// import { ChevronDownIcon, Search2Icon } from "@chakra-ui/icons";
-import {
-  Box,
-  Button,
-  ButtonProps,
-  Input,
-  InputGroup,
-  InputRightElement,
-  Popover,
-  PopoverBody,
-  PopoverContent,
-  PopoverFooter,
-  PopoverHeader,
-  PopoverTrigger,
-  Text,
-} from "@chakra-ui/react";
+import { useEffect, useState } from "react";
+import { Box, Popover, PopoverTrigger } from "@chakra-ui/react";
 import Autocomplete from "react-google-autocomplete";
 
 const LocationSearch = ({
+  dropDown,
   currentState,
   currentCity,
   searchLocation,
@@ -28,6 +14,7 @@ const LocationSearch = ({
 }) => {
   const [openDropdown, setOpenDropdown] = useState(false);
   const [searchResults, setSearchResults] = useState([]);
+
   useEffect(() => {
     if (currentState === "ALL") {
       setSearchResults(suggestions);
@@ -39,18 +26,25 @@ const LocationSearch = ({
       );
       setSearchResults(newSearch);
     }
-  }, [currentState, suggestions]);
+  }, [currentState, currentCity, suggestions]);
 
   const handleAddress = (data) => {
-    const address_data = data.address_components;
-    console.log(address_data, 'address_data')
+    const addressComponents = data.address_components;
+    const name = data.name || '';
+    const city = addressComponents.find(component => component.types.includes("locality"))?.long_name || '';
+    const state = addressComponents.find(component => component.types.includes("administrative_area_level_1"))?.long_name || '';
+    const country = addressComponents.find(component => component.types.includes("country"))?.long_name || '';
+    const locationString = `${name} - ${city} - ${state} - ${country}`;
+    debugger
+    onOptionSelect(locationString);
   };
+
   return (
     <Box
       onMouseLeave={() => {
         setOpenDropdown(false);
       }}
-      style={{marginRight: "20px"}}
+      style={{ marginRight: "20px" }}
     >
       <Popover
         isOpen={openDropdown}
@@ -62,7 +56,12 @@ const LocationSearch = ({
           <>
             <PopoverTrigger>
               <Autocomplete
-              style={{background: "transparent", border: "none", boxShadow: "none" ,color: "#eab258" }}
+                style={{
+                  background: "transparent",
+                  border: "none",
+                  boxShadow: "none",
+                  color: "#eab258",
+                }}
                 className="form-control custom-autocomplete"
                 apiKey="AIzaSyA7KuzKnZtkXFnX27_urYqePDfFK5aSt74"
                 onPlaceSelected={(place) => handleAddress(place)}
@@ -72,57 +71,12 @@ const LocationSearch = ({
                   componentRestrictions: { country: "AE" },
                 }}
               />
-              {/* <Input
-                // className="form__field"
-                h={{ base: "30px", lg: "36px" }}
-                p={"0px 8px"}
-                fontSize={{ base: "12px", lg: "16px" }}
-                autoComplete="off"
-                border="2px solid #000000"
-                borderRadius={"5px"}
-                focusBorderColor="0px solid #000000"
-                w={"100%"}
-                name="location"
-                value={searchLocation}
-                onChange={(e) => {
-                  onLocationChange(e);
-                  setOpenDropdown(true);
-                }}
-              ></Input> */}
             </PopoverTrigger>
-            <PopoverContent maxW={"100%"} maxH="200px" overflow="auto">
-              <PopoverBody p="0">
-                {searchResults?.length > 0 ? (
-                  searchResults.map((i) => (
-                    <Button
-                      key={i}
-                      onClick={() => {
-                        onClose();
-                        setOpenDropdown(false);
-                        if (onOptionSelect) {
-                          onOptionSelect(i);
-                        }
-                      }}
-                      variant="menuItem"
-                      wordBreak="break-all"
-                      justifyContent="flex-start"
-                      whiteSpace="pre-wrap"
-                      h="auto"
-                    >
-                      {i}
-                    </Button>
-                  ))
-                ) : (
-                  <Text py={2} textAlign="center">
-                    No Results
-                  </Text>
-                )}
-              </PopoverBody>
-            </PopoverContent>
           </>
         )}
       </Popover>
     </Box>
   );
 };
+
 export default LocationSearch;
