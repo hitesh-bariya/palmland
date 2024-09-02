@@ -23,7 +23,7 @@ export const nav = [
     text: "Services",
     path: "/services",
     accesTo: ["USER"],
-  },{
+  }, {
     text: "News Letter",
     path: "/newsletter",
     accesTo: ["USER"],
@@ -31,9 +31,9 @@ export const nav = [
   {
     text: "Blog",
     path: "/blog",
-    accesTo: ["ADMIN","USER"],
+    accesTo: ["ADMIN", "USER"],
   },
- 
+
   {
     text: "Contact",
     path: "/contact",
@@ -107,93 +107,128 @@ const Footer = () => {
           </Box>
         </Box>
       </Box>
-      <Box bgColor={colors.secondary} className="custom__container">
+      <Box bgColor={colors.secondary} className="custom__container" style={{padding: "50px 0"}}>
         <Box className="custom__row">
-          <Box p="50px 0px">
-            {/* light_blue_palm_land_logo */}
-            <Image
-              width={80}
-              height={100}
-              mb="20px"
-              src="/assets/images/yellow_palm_land_logo.svg"
-            ></Image>
-            <Text
-              color="#ffffff"
-              size={{ base: "20", md: "24", lg: "28" }}
-              variant="p_regular"
-              mb="10px"
+          <Box className="row">
+            <Box
+              className="col-sm-12 col-md-6 col-lg-5"
             >
-              Do You Need Help With Anything?
-            </Text>
-            <Text
-              color={colors.secondary_color_shade_four}
-              variant="s_light"
-              size="14"
-              mb="10px"
+              <Box w={"100%"} mb="0px">
+                {/* light_blue_palm_land_logo */}
+                <Image
+                  width={218}
+                  height={53}
+                  src="/assets/images/logo.png"
+                  style={{padding: "0 0 30px 0"}}
+                ></Image>
+                <Text
+                  color="#23566B"
+                  fontSize={"15px"}
+                  lineHeight={"17.58px"}
+                  style={{padding: "0 0 40px 0"}}
+                >
+                  Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation.
+                </Text>
+              </Box>
+            </Box>
+            <Box className="col-12 col-lg-1"></Box>
+            <Box
+              className="col-sm-12 col-md-6 col-lg-6"
             >
-              Receive updates, hot deals, tutorials, discounts sent straignt in
-              your inbox every month
-            </Text>
-
+              <Text
+                color="#ffffff"
+                size={{ base: "20", md: "24", lg: "28" }}
+                variant="p_regular"
+                mb="30px"
+              >
+                Get all the latest updates
+              </Text>
+              <Box className="row">
+                <Box
+                  className="col-sm-12 col-md-6 col-lg-8"
+                >
+                  <Box w={"100%"} mb="0px">
+                    <Input
+                      padding={"10px 16px"}
+                      border={"none"}
+                      borderRadius={"5px"}
+                      bgColor={"white"}
+                      margin={"0px 20px 0px 0px"}
+                      name="email"
+                      type="email"
+                      placeholder="Email Id"
+                      autoComplete="off"
+                    // value={user.email}
+                    // onChange={(e) => onChange(e)}
+                    />
+                    {/* <Text variant={"s_regular"} size={"14"} mt="6px">
+                        {error.email}
+                      </Text>
+                      <Text variant={"s_regular"} size={"14"} mt="6px">
+                        Please enter valid email
+                      </Text> */}
+                  </Box>
+                </Box>
+                <Box
+                  className="col-sm-12 col-md-6 col-lg-4"
+                >
+                  <Box w={"100%"} mb="0px">
+                    <Button
+                      color={colors.textColor}
+                      varint="primary"
+                      // onClick={handleSubmit}
+                      type="button"
+                    >
+                      Subscribe
+                    </Button>
+                  </Box>
+                </Box>
+              </Box>
+            </Box>
             <Box alignItems={"flex-end"} className="row">
+            <Box
+                  className="col-sm-12 col-md-12 col-lg-12"
+                >
+                  <Box w={"100%"} mb="0px">
+                    <Text
+                      color="#ECF2F8"
+                      fontSize={"20px"}
+                      lineHeight={"9.58px"}
+                      style={{padding: "0 0 15px 0"}}
+                      fontWeight="900"
+                    >
+                      Menu
+                    </Text>
+                  </Box>
+                </Box>
               <Box
                 display={"flex"}
                 alignItems={"flex-start"}
-                className="col-12 col-sm-10 col-md-8 col-lg-5"
+                className="col-12 col-sm-10 col-md-8 col-lg-12"
               >
-                <Box w={"100%"} display={"flex"} mb="0px">
-                  <Input
-                    padding={"10px 16px"}
-                    border={"none"}
-                    borderRadius={"5px"}
-                    bgColor={"white"}
-                    margin={"0px 20px 0px 0px"}
-                    name="email"
-                    type="email"
-                    placeholder="Email"
-                    autoComplete="off"
-                  // value={user.email}
-                  // onChange={(e) => onChange(e)}
-                  />
-                  {/* <Text variant={"s_regular"} size={"14"} mt="6px">
-                    {error.email}
-                  </Text>
-                  <Text variant={"s_regular"} size={"14"} mt="6px">
-                    Please enter valid email
-                  </Text> */}
-                </Box>
-                <Button
-                  color={colors.textColor}
-                  varint="primary"
-                  // onClick={handleSubmit}
-                  type="button"
+                <Box
+                  display={"flex"}
+                  justifyContent={"space-between"}
+                  alignItems={"center"}
+                  mt={{ base: "30px", lg: "0px" }}
+                  className="col-12 col-sm-10 col-md-6 col-lg-5"
                 >
-                  Subscribe
-                </Button>
+                  {nav.map((list) => (
+                    list.accesTo.includes(userRole) && (
+                      <Link key={list.path} href={list.path}>
+                        <Text
+                          // color={pathname === list.path ? "#ffffff" : "#eab258"}
+                          color="#FFFFFF"
+                          fontSize="16px"  // Use `fontSize` instead of `size` for Chakra UI
+                          fontWeight="400"
+                        >
+                          {list.text}
+                        </Text>
+                      </Link>
+                    )
+                  ))}
+                </Box>
               </Box>
-              <Box className="col-12 col-lg-1 "></Box>
-              <Box
-                display={"flex"}
-                justifyContent={"space-between"}
-                alignItems={"center"}
-                mt={{ base: "30px", lg: "0px" }}
-                className="col-12 col-sm-10 col-md-8 col-lg-6"
-              >
-                {nav.map((list) => (
-                  list.accesTo.includes(userRole) && (
-                    <Link key={list.path} href={list.path}>
-                      <Text
-                        color={pathname === list.path ? "#ffffff" : "#eab258"}
-                        fontSize="16px"  // Use `fontSize` instead of `size` for Chakra UI
-                        fontWeight="bold" // Use `fontWeight` instead of `variant` for Chakra UI
-                      >
-                        {list.text}
-                      </Text>
-                    </Link>
-                  )
-                ))}
-              </Box>
-
             </Box>
           </Box>
         </Box>
