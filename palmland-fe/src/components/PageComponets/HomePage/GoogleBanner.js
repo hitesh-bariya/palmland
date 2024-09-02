@@ -26,40 +26,21 @@ import {
 const GoogleBanner = ({ onSubmit }) => {
   const router = useRouter();
   const dispatch = useDispatch();
-  const [search, setSearch] = useState({
-    city: "Dubai",
-    state: {
-      id: 3391,
-      name: "Dubai",
-      iso2: "DU",
-    },
-    country: "AE",
-    location: "",
-    propertyType: "Plots",
-  });
+  const [search, setSearch] = useState({});
   const [dropDown, setDropdown] = useState(false);
-  useEffect(() => {
-    setSearch({ ...search, state: "AE" });
-    dispatch(appActions.getCountryList());
-  }, []);
-  useEffect(() => {
-    setSearch({ ...search, state: "ALL" });
-    dispatch(appActions.getStateList("231"));
-  }, []);
+
   const [suggestions, setSuggestions] = useState([]);
   const onChange = (e) => {
     const name = e.target.name;
     const value = e.target.value;
     setSearch({ ...search, [name]: value });
   };
-  const onCountryChange = (value) => {
-    setSearch({ ...search, country: value });
-  };
-  const onStateChange = (value) => {
-    setSearch({ ...search, state: value });
-  };
-  const onCityChange = (value) => {
-    setSearch({ ...search, city: value });
+  const onCityChange = (e) => {
+    debugger
+    const name = e.target.selectedOptions[0].text;
+    const value = e.target.value;
+    setSearch({ ...search, cityText: name, city: value });
+  
   };
   const onLocationChange = (value) => {
     setSearch({ ...search, location: value.target.value });
@@ -81,14 +62,15 @@ const GoogleBanner = ({ onSubmit }) => {
   }, [search.state]);
 
   useEffect(() => {
-    if(search.country){
+    if (search.country) {
       dispatch(appActions.getStateList(search.country.id));
     }
   }, [search.country]);
 
   const handleSubmit = () => {
+    debugger
     onSubmit(search);
-    
+
   };
   return (
     <Box
@@ -107,13 +89,7 @@ const GoogleBanner = ({ onSubmit }) => {
         position={"relative"}
         className="banner__block"
       >
-        {/* <video height="600" autoPlay loop muted preload="yes">
-          <source
-            src="/assets/videos/banner_video.mp4"
-            type="video/mp4"
-          ></source>
-        </video> */}
-        <img src="/assets/images/home-banner.png" height="539px" width="100%" alt="call" style={{filter: "brightness(20%)"}}></img>
+        <img src="/assets/images/home-banner.png" height="539px" width="100%" alt="call" style={{ filter: "brightness(20%)" }}></img>
         <Box
           position={"absolute"}
           display={"flex"}
@@ -127,7 +103,7 @@ const GoogleBanner = ({ onSubmit }) => {
           <Text
             variant={"p_bold"}
             color={"white"}
-            style={{fontSize: "46px", fontWeight: "700", lineHeight: "72px" }}
+            style={{ fontSize: "46px", fontWeight: "700", lineHeight: "72px" }}
             textAlign={"center"}
           >
             Find Your Next Home
@@ -137,7 +113,7 @@ const GoogleBanner = ({ onSubmit }) => {
             color={"#FFFFFF"}
             mb="10px"
             textAlign={"center"}
-            style={{fontSize: "17px", lineHeight: "21.6px", letterSpacing: "3px", marginBottom: "25px"}}
+            style={{ fontSize: "17px", lineHeight: "21.6px", letterSpacing: "3px", marginBottom: "25px" }}
           >
             Explore new & featured property located in your local city.
           </Text>
@@ -163,7 +139,7 @@ const GoogleBanner = ({ onSubmit }) => {
                 gap={{ base: 2, lg: 4 }}
                 alignItems="flex-end"
               >
-               
+
 
                 <GridItem colSpan={{ base: 5, md: 1 }}>
                   <Box
@@ -173,6 +149,36 @@ const GoogleBanner = ({ onSubmit }) => {
                     className="banner__field__block"
                     borderRight={"1px solid #284D5C"}
                   >
+
+                    
+<Text
+                      variant={"search_s_regular"}
+                      size={{ base: "14", lg: "16" }}
+                      mb="6px"
+                    >
+                      City
+                    </Text>
+                    <Select
+                      className="banner__field"
+                      fontSize={{ base: "12px", lg: "16px" }}
+                      h={{ base: "30px", lg: "36px" }}
+                      type="text"
+                      placeholder="City"
+                      name="city"
+                      value={search.city}
+                      onChange={(e) => onCityChange(e)}
+                      style={{ background: "transparent", border: "none", boxShadow: "none", color: "#eab258", appearance: "auto", paddingLeft: "0", width: "fit-content" }}
+                    >
+                      <option value="1">Dubai</option>
+                      <option value="2">Abu Dhabi</option>
+                      <option value="3">Sharjah</option>
+                      <option value="4">Al Ain</option>
+                      <option value="5">Ajman</option>
+                      <option value="6">Ras Al Khaimah</option>
+                      <option value="7">Fujairah</option>
+                      <option value="8">Umm Al Quwain</option>
+                    </Select>
+
                     <Text
                       variant={"search_s_regular"}
                       size={{ base: "14", lg: "16" }}
@@ -214,7 +220,7 @@ const GoogleBanner = ({ onSubmit }) => {
                       name="propetyType"
                       value={search.propetyType}
                       onChange={(e) => onChange(e)}
-                      style={{background: "transparent", border: "none", boxShadow: "none" ,color: "#eab258",appearance: "auto", paddingLeft: "0", width: "fit-content"}}
+                      style={{ background: "transparent", border: "none", boxShadow: "none", color: "#eab258", appearance: "auto", paddingLeft: "0", width: "fit-content" }}
                     >
                       <option value="COMERCIAL">Comercial </option>
                       <option value="RESIDANTIAL">Residantial </option>
@@ -231,9 +237,9 @@ const GoogleBanner = ({ onSubmit }) => {
                     h={{ base: "30px", lg: "36px" }}
                     mt={{ base: "10px", lg: "0px" }}
                     onClick={handleSubmit}
-                    style={{marginBottom: "15px", color: "#fff"}}
+                    style={{ marginBottom: "15px", color: "#fff" }}
                   >
-                    Search&nbsp;&nbsp;<img src="/assets/icons/search.png" alt="call" style={{height: "17px", width: "17px"}} class="search_icon"></img>
+                    Search&nbsp;&nbsp;<img src="/assets/icons/search.png" alt="call" style={{ height: "17px", width: "17px" }} class="search_icon"></img>
                   </Button>
                 </GridItem>
               </Grid>
@@ -251,37 +257,37 @@ const GoogleBanner = ({ onSubmit }) => {
             templateColumns="repeat(3, 1fr)"
             gap={{ base: 2, lg: 4 }}
             alignItems="flex-end"
-          >  
-            <GridItem colSpan={{ base: 3 , md: 1 }}>
+          >
+            <GridItem colSpan={{ base: 3, md: 1 }}>
               <Text
                 variant={"p_bold"}
                 color={"white"}
-                style={{textAlign: "center", fontWeight: "300"}}
+                style={{ textAlign: "center", fontWeight: "300" }}
                 textAlign={"center"}
               >
-                <span style={{fontWeight: "800", fontSize: "23px", lineHeight: "20px", color: "#eab258"}}>1200 +</span><br></br>
+                <span style={{ fontWeight: "800", fontSize: "23px", lineHeight: "20px", color: "#eab258" }}>1200 +</span><br></br>
                 Listed Properties
               </Text>
             </GridItem>
-            <GridItem colSpan={{ base: 3 , md: 1 }}>
-            <Text
+            <GridItem colSpan={{ base: 3, md: 1 }}>
+              <Text
                 variant={"p_bold"}
                 color={"white"}
-                style={{textAlign: "center", fontWeight: "300"}}
+                style={{ textAlign: "center", fontWeight: "300" }}
                 textAlign={"center"}
               >
-                <span style={{fontWeight: "800", fontSize: "23px", lineHeight: "20px", color: "#eab258"}}>100 +</span><br></br>
+                <span style={{ fontWeight: "800", fontSize: "23px", lineHeight: "20px", color: "#eab258" }}>100 +</span><br></br>
                 Awards
               </Text>
             </GridItem>
-            <GridItem colSpan={{ base: 3 , md: 1 }}>
-            <Text
+            <GridItem colSpan={{ base: 3, md: 1 }}>
+              <Text
                 variant={"p_bold"}
                 color={"white"}
-                style={{textAlign: "center", fontWeight: "300"}}
+                style={{ textAlign: "center", fontWeight: "300" }}
                 textAlign={"center"}
               >
-                <span style={{fontWeight: "800", fontSize: "23px", lineHeight: "20px", color: "#eab258"}}>1800 +</span><br></br>
+                <span style={{ fontWeight: "800", fontSize: "23px", lineHeight: "20px", color: "#eab258" }}>1800 +</span><br></br>
                 Happy Customers
               </Text>
             </GridItem>

@@ -28,39 +28,47 @@ export default function Home() {
   const [loading, setLoading] = useState(true);
   useEffect(() => {
     // getAllProperty(setProperties, setLoading);
-    const data={
-    dataOption: "all",
-    searchCriteriaList: []
+    const data = {
+      dataOption: "all",
+      searchCriteriaList: []
     }
-    searchProperty(data,setProperties, setLoading);
+    searchProperty(data, setProperties, setLoading);
   }, []);
 
   const handleChildSubmit = (searchData) => {
     // Initialize the data object
     const data = {
-        dataOption: "all",
-        searchCriteriaList: []
+      dataOption: "all",
+      searchCriteriaList: []
     };
 
     // Add search criteria based on available data
     if (searchData.propetyType) {
-        data.searchCriteriaList.push({
-            filterKey: "propertyType",
-            value: searchData.propetyType,
-            operation: "eq"
-        });
+      data.searchCriteriaList.push({
+        filterKey: "propertyType",
+        value: searchData.propetyType,
+        operation: "eq"
+      });
+    }
+
+    if (searchData.cityText && searchData.cityText!='City') {
+      data.searchCriteriaList.push({
+        filterKey: "city",
+        value: searchData.cityText,
+        operation: "eq"
+      });
     }
 
     if (searchData.location) {
-        data.searchCriteriaList.push({
-            filterKey: "addressLine1",
-            value: searchData.location,
-            operation: "eq"
-        });
+      data.searchCriteriaList.push({
+        filterKey: "addressLine1",
+        value: searchData.location,
+        operation: "eq"
+      });
     }
 
     searchProperty(data, setProperties, setLoading);
-};
+  };
 
 
   return (
@@ -91,7 +99,7 @@ export default function Home() {
           properties={properties}
           sectionTitle="Upcoming Properties"
         />
-         <Properties
+        <Properties
           loading={loading}
           properties={properties}
           sectionTitle="Our Popular Homes"

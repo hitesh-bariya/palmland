@@ -90,28 +90,28 @@ public class CommonServiceImpl implements CommonService {
 	@Override
 	public ResponseVO<List<City>> findAllCityByStateId(Long stateId) {
 		ResponseVO<List<City>> reponse = new ResponseVO<List<City>>();
-		List<City> cityList = cityRepository.findByStateId(stateId);
+		/*List<City> cityList = cityRepository.findByStateId(stateId);
 		if (!cityList.isEmpty()) {
 			reponse.setStatus(200);
 			reponse.setData(cityList);
 		} else {
 			reponse.setStatus(200);
 			reponse.setMessage("city not available");
-		}
+		}*/
 		return reponse;
 	}
 
 	@Override
 	public ResponseVO<List<City>> findCityByStateIdAndCityName(Long stateId, String cityName) {
 		ResponseVO<List<City>> reponse = new ResponseVO<List<City>>();
-		List<City> cityList = cityRepository.findByStateIdAndCityNameContaining(stateId, cityName);
+		/*List<City> cityList = cityRepository.findByStateIdAndCityNameContaining(stateId, cityName);
 		if (!cityList.isEmpty()) {
 			reponse.setStatus(200);
 			reponse.setData(cityList);
 		} else {
 			reponse.setStatus(200);
 			reponse.setMessage("city not available");
-		}
+		}*/
 		return reponse;
 	}
 
