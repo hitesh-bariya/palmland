@@ -40,7 +40,7 @@ const GoogleBanner = ({ onSubmit }) => {
     const name = e.target.selectedOptions[0].text;
     const value = e.target.value;
     setSearch({ ...search, cityText: name, city: value });
-  
+
   };
   const onLocationChange = (value) => {
     setSearch({ ...search, location: value.target.value });
@@ -135,12 +135,10 @@ const GoogleBanner = ({ onSubmit }) => {
               }}
             >
               <Grid
-                templateColumns="repeat(3, 1fr)"
-                gap={{ base: 2, lg: 4 }}
+                templateColumns="repeat(4, 1fr)"
+                gap={{ base: 2, lg: 12 }}
                 alignItems="flex-end"
               >
-
-
                 <GridItem colSpan={{ base: 5, md: 1 }}>
                   <Box
                     display={"flex"}
@@ -149,9 +147,7 @@ const GoogleBanner = ({ onSubmit }) => {
                     className="banner__field__block"
                     borderRight={"1px solid #284D5C"}
                   >
-
-                    
-<Text
+                    <Text
                       variant={"search_s_regular"}
                       size={{ base: "14", lg: "16" }}
                       mb="6px"
@@ -178,7 +174,16 @@ const GoogleBanner = ({ onSubmit }) => {
                       <option value="7">Fujairah</option>
                       <option value="8">Umm Al Quwain</option>
                     </Select>
-
+                  </Box>
+                </GridItem>
+                <GridItem colSpan={{ base: 5, md: 1 }}>
+                  <Box
+                    display={"flex"}
+                    flexDirection={"column"}
+                    w={"100%"}
+                    className="banner__field__block"
+                    borderRight={"1px solid #284D5C"}
+                  >
                     <Text
                       variant={"search_s_regular"}
                       size={{ base: "14", lg: "16" }}
