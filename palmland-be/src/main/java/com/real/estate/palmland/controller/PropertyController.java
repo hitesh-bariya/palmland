@@ -25,6 +25,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.client.RestTemplate;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -116,6 +117,15 @@ public class PropertyController {
 	@GetMapping(value = "/all")
 	public ResponseVO<List<PropertyDto>> getAllProperty() {
 		return propertyService.findAllProperties();
+	}
+	
+	
+	@GetMapping(value = "/place")
+	public String getAllProperty(@RequestParam String placeId, @RequestParam String apiKey) {
+		String url = "https://maps.googleapis.com/maps/api/place/details/json?place_id=" + placeId + "&key=" + apiKey;
+		RestTemplate restTemplate=new RestTemplate();
+        String response = restTemplate.getForObject(url, String.class);
+		return response;
 	}
 
 	@GetMapping(value = "/images")

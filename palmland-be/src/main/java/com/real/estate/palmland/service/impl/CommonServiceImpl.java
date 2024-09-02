@@ -187,7 +187,7 @@ public class CommonServiceImpl implements CommonService {
 					state.setId(cityRequestDto.getState_id());
 					City city=new City();
 					city.setId(cityRequestDto.getId());
-					city.setState(state);
+					//city.setState(state);
 					city.setCityName(cityRequestDto.getName());
 					cityList.add(city);
 				}

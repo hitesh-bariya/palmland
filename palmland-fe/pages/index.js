@@ -36,21 +36,32 @@ export default function Home() {
   }, []);
 
   const handleChildSubmit = (searchData) => {
-
+    // Initialize the data object
     const data = {
-      dataOption: "all",
-      searchCriteriaList: []
+        dataOption: "all",
+        searchCriteriaList: []
     };
 
+    // Add search criteria based on available data
     if (searchData.propetyType) {
-      data.searchCriteriaList.push({
-        filterKey: "propertyType",
-        value: searchData.propetyType,
-        operation: "eq"
-      });
+        data.searchCriteriaList.push({
+            filterKey: "propertyType",
+            value: searchData.propetyType,
+            operation: "eq"
+        });
     }
-      searchProperty(data,setProperties, setLoading);
+
+    if (searchData.location) {
+        data.searchCriteriaList.push({
+            filterKey: "addressLine1",
+            value: searchData.location,
+            operation: "eq"
+        });
+    }
+
+    searchProperty(data, setProperties, setLoading);
 };
+
 
   return (
     <>
