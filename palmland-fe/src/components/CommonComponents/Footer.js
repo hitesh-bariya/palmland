@@ -4,39 +4,77 @@ import { Box, Button, Input, Text } from "@chakra-ui/react";
 import Image from "next/image";
 import Link from "next/link";
 import { useRouter } from "next/router";
-import React from "react";
-import { useDispatch } from "react-redux";
+import React, { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { selectIsLoggedIn, selectUserDetail } from "@/stores/Auth/authReducer";
 
 export const nav = [
   {
     text: "Home",
     path: "/",
+    accesTo: ["USER"],
   },
   {
     text: "About",
     path: "/about",
+    accesTo: ["ADMIN"],
   },
   {
     text: "Services",
     path: "/services",
+    accesTo: ["USER"],
+  },{
+    text: "News Letter",
+    path: "/newsletter",
+    accesTo: ["USER"],
   },
   {
     text: "Blog",
     path: "/blog",
+    accesTo: ["ADMIN","USER"],
   },
-  {
-    text: "News Letter",
-    path: "/newsletter",
-  },
+ 
   {
     text: "Contact",
     path: "/contact",
+    accesTo: ["ADMIN"],
   },
+  ,
+  {
+    text: "Career",
+    path: "/career",
+    accesTo: ["USER", "DEALER", "ADMIN"],
+  }
 ];
 const Footer = () => {
   const data = useRouter();
   const isServicePage = useRouter().pathname.includes("/services");
   const dispatch = useDispatch();
+
+
+
+  const isloggedIn = useSelector(selectIsLoggedIn);
+  const userDetail = useSelector(selectUserDetail);
+  const router = useRouter();
+  const [userRole, setUserRole] = useState("USER");
+  useEffect(() => {
+    if (isloggedIn && userDetail.role !== "") {
+      setUserRole(userDetail.role);
+    } else {
+      setUserRole("USER");
+      window.localStorage.setItem("userRole", "USER");
+    }
+  }, [isloggedIn]);
+
+
+  useEffect(() => {
+    if (window.localStorage.getItem("userRole")) {
+      setUserRole(window.localStorage.getItem("userRole"));
+    }
+  }, []);
+
+
+
   const openPropertyDealerRegisterModel = () => {
     dispatch(openModel("PropertyDealerModel", {}));
   };
@@ -114,8 +152,8 @@ const Footer = () => {
                     type="email"
                     placeholder="Email"
                     autoComplete="off"
-                    // value={user.email}
-                    // onChange={(e) => onChange(e)}
+                  // value={user.email}
+                  // onChange={(e) => onChange(e)}
                   />
                   {/* <Text variant={"s_regular"} size={"14"} mt="6px">
                     {error.email}
@@ -142,17 +180,20 @@ const Footer = () => {
                 className="col-12 col-sm-10 col-md-8 col-lg-6"
               >
                 {nav.map((list) => (
-                  <Link href={list.path}>
-                    <Text
-                      color={pathname === list.path ? "#ffffff" : "#eab258"}
-                      size="16"
-                      variant="p_bold"
-                    >
-                      {list.text}
-                    </Text>
-                  </Link>
+                  list.accesTo.includes(userRole) && (
+                    <Link key={list.path} href={list.path}>
+                      <Text
+                        color={pathname === list.path ? "#ffffff" : "#eab258"}
+                        fontSize="16px"  // Use `fontSize` instead of `size` for Chakra UI
+                        fontWeight="bold" // Use `fontWeight` instead of `variant` for Chakra UI
+                      >
+                        {list.text}
+                      </Text>
+                    </Link>
+                  )
                 ))}
               </Box>
+
             </Box>
           </Box>
         </Box>
