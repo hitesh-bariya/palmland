@@ -38,11 +38,11 @@ export const navLinks = [
     path: "/blog",
     accesTo: ["USER", "DEALER"],
   },
-  // {
-  //   text: "Contact",
-  //   path: "/contact",
-  //   accesTo: ["USER", "DEALER"],
-  // },
+  {
+     text: "Contact",
+     path: "/contact",
+     accesTo: ["USER", "DEALER"],
+   },
   {
     text: "Post Property",
     path: "/postProperty",
@@ -70,7 +70,7 @@ export const navLinks = [
   },
   {
     text: "Career",
-    path: "/career",
+    path: "/Career",
     accesTo: ["USER", "DEALER", "ADMIN"],
   }
 ];

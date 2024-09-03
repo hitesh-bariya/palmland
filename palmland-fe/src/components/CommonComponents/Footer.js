@@ -37,22 +37,19 @@ export const nav = [
   {
     text: "Contact",
     path: "/contact",
-    accesTo: ["ADMIN"],
+    accesTo: ["USER"],
   },
   ,
   {
     text: "Career",
-    path: "/career",
-    accesTo: ["USER", "DEALER", "ADMIN"],
+    path: "/Career",
+    accesTo: ["USER"],
   }
 ];
 const Footer = () => {
   const data = useRouter();
   const isServicePage = useRouter().pathname.includes("/services");
   const dispatch = useDispatch();
-
-
-
   const isloggedIn = useSelector(selectIsLoggedIn);
   const userDetail = useSelector(selectUserDetail);
   const router = useRouter();
@@ -65,16 +62,11 @@ const Footer = () => {
       window.localStorage.setItem("userRole", "USER");
     }
   }, [isloggedIn]);
-
-
   useEffect(() => {
     if (window.localStorage.getItem("userRole")) {
       setUserRole(window.localStorage.getItem("userRole"));
     }
   }, []);
-
-
-
   const openPropertyDealerRegisterModel = () => {
     dispatch(openModel("PropertyDealerModel", {}));
   };
@@ -233,10 +225,6 @@ const Footer = () => {
           </Box>
         </Box>
       </Box>
-      {/* 
-      <div className="legal">
-        <span>© 2023 Designd By GorkCoder.</span>
-      </div> */}
     </>
   );
 };
