@@ -70,7 +70,7 @@ export const navLinks = [
   },
   {
     text: "Career",
-    path: "/career",
+    path: "/Career",
     accesTo: ["USER", "DEALER", "ADMIN"],
   }
 ];
