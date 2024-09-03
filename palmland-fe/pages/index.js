@@ -88,21 +88,25 @@ export default function Home() {
           loading={loading}
           properties={properties}
           sectionTitle="Featured Properties"
+          PropertyMarquee="FEATURED"
         />
         <Properties
           loading={loading}
           properties={properties}
           sectionTitle="Recent Properties"
+          PropertyMarquee="RECENT"
         />
         <Properties
           loading={loading}
           properties={properties}
           sectionTitle="Upcoming Properties"
+           PropertyMarquee="UPCOMING"
         />
         <Properties
           loading={loading}
           properties={properties}
           sectionTitle="Our Popular Homes"
+          PropertyMarquee="POPULAR"
         />
         <Agents />
       </div>

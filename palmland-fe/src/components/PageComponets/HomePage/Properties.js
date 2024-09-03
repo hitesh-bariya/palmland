@@ -5,7 +5,7 @@ import React, { useState } from "react";
 import { Button } from "../../../../pages/components/button";
 import { Box, Spinner } from "@chakra-ui/react";
 
-function Properties({ sectionTitle, properties, loading }) {
+function Properties({ sectionTitle, properties, loading, PropertyMarquee }) {
   const [proprtiesArray, setProprtiesArray] = useState([
     1, 2, 3, 4, 5, 6, 7, 8,
   ]);
@@ -20,11 +20,15 @@ function Properties({ sectionTitle, properties, loading }) {
           <>
             <div className="row properties__container">
               {properties.map((property) => {
-                return (
-                  <div className="col-12 col-sm-6 col-md-4 col-lg-3 properties__block">
-                    <CardOne property={property} />
-                  </div>
-                );
+                if (PropertyMarquee === property.propertyMarquee) {
+                  return (
+                    <div className="col-12 col-sm-6 col-md-4 col-lg-3 properties__block" key={property.id}>
+                      <CardOne property={property} />
+                    </div>
+                  );
+                } else {
+                  return null;
+                }
               })}
             </div>
             <div className="button view__more__button__block">
