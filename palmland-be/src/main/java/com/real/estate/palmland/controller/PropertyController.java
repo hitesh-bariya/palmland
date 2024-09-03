@@ -156,7 +156,7 @@ public class PropertyController {
 		Pageable page = PageRequest.of(pageNum, pageSize, Sort.by("propertyName").ascending()
 				.and(Sort.by("propertyType")).ascending().and(Sort.by("location")).ascending());
 
-		return propertyService.findBySearchCriteria(builder.build(), page);
+		return propertyService.findBySearchCriteria(builder.build());
 	}
 
 	@DeleteMapping(value = "/delete")

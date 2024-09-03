@@ -20,7 +20,7 @@ public interface CommonService {
 	
 	ResponseVO<List<State>> findStateByCountryIdAndStateName(Long countryId, String stateName);
 	
-	ResponseVO<List<City>> findAllCityByStateId(Long stateId);
+	ResponseVO<List<City>> findAllCity();
 	
 	ResponseVO<List<City>> findCityByStateIdAndCityName(Long stateId,String cityName);
 	

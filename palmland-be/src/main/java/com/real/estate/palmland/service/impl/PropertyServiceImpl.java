@@ -161,17 +161,15 @@ public class PropertyServiceImpl implements PropertyService {
 	}
 
 	@Override
-	public ResponseVO<List<PropertyDto>> findBySearchCriteria(Specification<Property> spec, Pageable page) {
+	public ResponseVO<List<PropertyDto>> findBySearchCriteria(Specification<Property> spec) {
 		
 		ResponseVO<List<PropertyDto>> response=new ResponseVO<List<PropertyDto>>();
 		
-		Page<Property> searchResult = propertyRepository.findAll(spec, page);
+		List<Property> searchResult = propertyRepository.findAll(spec);
 		
-		if(!searchResult.isEmpty()) {
-			List<Property> properties=searchResult.toList();
-			
+		if(!searchResult.isEmpty()) {	
 			List<PropertyDto> propertyDtoList = new ArrayList<>();
-			convertToPropertyDto(properties, propertyDtoList);
+			convertToPropertyDto(searchResult, propertyDtoList);
 			response.setStatus(200);
 			response.setData(propertyDtoList);		
 		}

@@ -74,8 +74,8 @@ public class CommonController {
 	}
 	
 	@GetMapping(value = "/city/{stateId}")
-	public ResponseVO<List<City>> findAllCityByStateId(@PathVariable("stateId") Long stateId) {
-		return commonService.findAllCityByStateId(stateId);
+	public ResponseVO<List<City>> findAllCity() {
+		return commonService.findAllCity();
 	}
 	
 	@GetMapping(value = "/city/{stateId}/{cityName}")

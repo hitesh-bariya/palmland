@@ -18,7 +18,7 @@ public interface PropertyService {
 
 	public List<PropertyDto> getAllProperties();
 
-	public ResponseVO<List<PropertyDto>> findBySearchCriteria(Specification<Property> spec, Pageable page);
+	public ResponseVO<List<PropertyDto>> findBySearchCriteria(Specification<Property> spec);
 	
 	public ResponseVO<List<Image>> findImagiesByName(String propertyName);
 	

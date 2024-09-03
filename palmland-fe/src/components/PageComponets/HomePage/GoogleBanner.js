@@ -11,12 +11,8 @@ import {
 } from "@chakra-ui/react";
 import { useRouter } from "next/router";
 import React, { useEffect, useState } from "react";
-// import CountryDropDown from "./CountryDropDown";
 import { useDispatch } from "react-redux";
 import * as appActions from "@/stores/App/appAction";
-import CountryDropDown from "./CountryDropDown";
-import StateDropDown from "./StateDropDown";
-import CityDropDown from "./CityDropDown";
 import LocationSearch from "./LocationSearch";
 import colors from "@/theme/foundations/colors";
 import {
@@ -28,6 +24,7 @@ const GoogleBanner = ({ onSubmit }) => {
   const dispatch = useDispatch();
   const [search, setSearch] = useState({});
   const [dropDown, setDropdown] = useState(false);
+  const [cityData, setCityData] = useState([]);
 
   const [suggestions, setSuggestions] = useState([]);
   const onChange = (e) => {
@@ -36,7 +33,6 @@ const GoogleBanner = ({ onSubmit }) => {
     setSearch({ ...search, [name]: value });
   };
   const onCityChange = (e) => {
-    debugger
     const name = e.target.selectedOptions[0].text;
     const value = e.target.value;
     setSearch({ ...search, cityText: name, city: value });
@@ -49,27 +45,22 @@ const GoogleBanner = ({ onSubmit }) => {
     setSearch({ ...search, location: value });
   };
   useEffect(() => {
-    if (
-      search.state &&
-      search.state !== "" &&
-      search.country &&
-      search.country !== ""
-    ) {
-      setSearch({ ...search, city: search.city });
-      dispatch(appActions.getCityList(search.country.id, search.state.id));
-    }
-  }, [search.state]);
+    getCityPlaceData();
+  }, []);
 
-  useEffect(() => {
-    if (search.country) {
-      dispatch(appActions.getStateList(search.country.id));
+  const getCityPlaceData = async () => {
+    try {
+      const response = await fetch(`http://51.20.140.56/api/v1/common/city/0`);
+      const data = await response.json();
+      setCityData(data.data);
+    } catch (error) {
+      console.error('Error fetching City data:', error);
+      return '';
     }
-  }, [search.country]);
+  };
 
   const handleSubmit = () => {
-    debugger
     onSubmit(search);
-
   };
   return (
     <Box
@@ -164,14 +155,13 @@ const GoogleBanner = ({ onSubmit }) => {
                       onChange={(e) => onCityChange(e)}
                       style={{ background: "transparent", border: "none", boxShadow: "none", color: "#eab258", appearance: "auto", paddingLeft: "0", width: "fit-content" }}
                     >
-                      <option value="1">Dubai</option>
-                      <option value="2">Abu Dhabi</option>
-                      <option value="3">Sharjah</option>
-                      <option value="4">Al Ain</option>
-                      <option value="5">Ajman</option>
-                      <option value="6">Ras Al Khaimah</option>
-                      <option value="7">Fujairah</option>
-                      <option value="8">Umm Al Quwain</option>
+                      {cityData.length > 0 ? (
+                        cityData.map((city) => (
+                          <option key={city.id} value={city.id}>{city.cityName}</option>
+                        ))
+                      ) : (
+                        <option>No cities available</option>
+                      )}
                     </Select>
                   </Box>
                 </GridItem>
