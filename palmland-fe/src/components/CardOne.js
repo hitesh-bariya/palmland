@@ -97,7 +97,7 @@ function CardOne({ property }) {
               {property.propertyName}
             </Text>
             <Text variant="s_light" size="14">
-              Vashi, West Mumbai
+            {property.location.city} {property.location.country} {property.location.pinCode}
             </Text>
           </div>
           <Text content="59 Lac" varient="p_bold_primary font_size_20" />

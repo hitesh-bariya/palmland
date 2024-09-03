@@ -29,14 +29,18 @@ const LocationSearch = ({
   }, [currentState, currentCity, suggestions]);
 
   const handleAddress = (data) => {
-    const addressComponents = data.address_components;
-    const name = data.name || '';
-    const city = addressComponents.find(component => component.types.includes("locality"))?.long_name || '';
-    const state = addressComponents.find(component => component.types.includes("administrative_area_level_1"))?.long_name || '';
-    const country = addressComponents.find(component => component.types.includes("country"))?.long_name || '';
-    const locationString = `${name} - ${city} - ${state} - ${country}`;
-    debugger
-    onOptionSelect(locationString);
+    onOptionSelect(data.place_id);
+    //getGooglePlaceData(data.place_id, 'AIzaSyA7KuzKnZtkXFnX27_urYqePDfFK5aSt74');
+  };
+  const getGooglePlaceData = async (placeId, apiKey) => {
+    try {
+      const response = await fetch(`http://localhost:8080/api/v1/property/place?placeId=${placeId}&apiKey=${apiKey}`);
+      const data = await response.json();
+      onOptionSelect(data.result.name +"-"+ data.result.formatted_address);
+    } catch (error) {
+      console.error('Error fetching place data:', error);
+      return '';
+    }
   };
 
   return (

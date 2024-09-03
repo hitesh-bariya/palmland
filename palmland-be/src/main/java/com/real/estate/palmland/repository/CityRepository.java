@@ -8,10 +8,6 @@ import org.springframework.stereotype.Repository;
 import com.real.estate.palmland.entity.City;
 
 @Repository
-public interface CityRepository extends JpaRepository<City, Long>{
-	
-	List<City> findByStateId(Long stateId);
-	
-	 List<City> findByStateIdAndCityNameContaining(Long stateId, String cityName);
+public interface CityRepository extends JpaRepository<City, Long> {
 
 }

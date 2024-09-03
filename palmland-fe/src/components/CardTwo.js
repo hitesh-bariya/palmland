@@ -13,37 +13,42 @@ function CardTwo({ image }) {
           />
         </div>
       </div>
-      <div className="agents__details__block">
-        <div className="agents__name__listing__block">
-          <Text variant={"p_regular"} color={"white"} size={"md"}>
+      <div className="agents__details__block text-center">
+        <div className="">
+          <Text variant={"p_regular"} color={"white"} size={"md"} style={{lineHeight:"25px"}}>
             Sargam Singh
           </Text>
-          <Text
+          {/* <Text
             variant={"s_bold"}
             color={colors.secondary_color_shade_two}
             size={"sm"}
           >
             70
-          </Text>
+          </Text> */}
         </div>
-        <div className="agents__name__listing__block">
+        <div className="">
           <Text
             variant={"s_light"}
             color={colors.secondary_color_shade_two}
             size={"sm"}
+            style={{fontSize: "12px", lineHeight: "20px"}}
           >
             Liverpool, UK
           </Text>
-          <p className="agents__connects__icons__block">
+        </div>
+        <div className="agents__name__listing__block" style={{justifyContent: "center"}}>
+          <p className="agents__connects__icons__block" style={{padding: "10px"}}>
             <img
               src="/assets/icons/call.svg"
               alt="call"
               className="agents__connects__icon"
+              style={{marginLeft: "0", height: "25px", width: "25px", backgroundColor: "#0E303E", borderRadius: "25px", padding: "5px"}}
             />
             <img
               src="/assets/icons/message.svg"
               alt="message"
               className="agents__connects__icon"
+              style={{height: "23px", width: "25px", backgroundColor: "#0E303E", borderRadius: "25px", padding: "7px 0px"}}
             />
           </p>
         </div>

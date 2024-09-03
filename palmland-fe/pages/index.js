@@ -28,20 +28,21 @@ export default function Home() {
   const [loading, setLoading] = useState(true);
   useEffect(() => {
     // getAllProperty(setProperties, setLoading);
-    const data={
-    dataOption: "all",
-    searchCriteriaList: []
+    const data = {
+      dataOption: "all",
+      searchCriteriaList: []
     }
-    searchProperty(data,setProperties, setLoading);
+    searchProperty(data, setProperties, setLoading);
   }, []);
 
   const handleChildSubmit = (searchData) => {
-
+    // Initialize the data object
     const data = {
       dataOption: "all",
       searchCriteriaList: []
     };
 
+    // Add search criteria based on available data
     if (searchData.propetyType) {
       data.searchCriteriaList.push({
         filterKey: "propertyType",
@@ -49,8 +50,26 @@ export default function Home() {
         operation: "eq"
       });
     }
-      searchProperty(data,setProperties, setLoading);
-};
+
+    if (searchData.cityText && searchData.cityText!='City') {
+      data.searchCriteriaList.push({
+        filterKey: "city",
+        value: searchData.cityText,
+        operation: "eq"
+      });
+    }
+
+    if (searchData.location) {
+      data.searchCriteriaList.push({
+        filterKey: "addressLine1",
+        value: searchData.location,
+        operation: "eq"
+      });
+    }
+
+    searchProperty(data, setProperties, setLoading);
+  };
+
 
   return (
     <>
@@ -69,21 +88,25 @@ export default function Home() {
           loading={loading}
           properties={properties}
           sectionTitle="Featured Properties"
+          PropertyMarquee="FEATURED"
         />
         <Properties
           loading={loading}
           properties={properties}
           sectionTitle="Recent Properties"
+          PropertyMarquee="RECENT"
         />
         <Properties
           loading={loading}
           properties={properties}
           sectionTitle="Upcoming Properties"
+           PropertyMarquee="UPCOMING"
         />
-         <Properties
+        <Properties
           loading={loading}
           properties={properties}
           sectionTitle="Our Popular Homes"
+          PropertyMarquee="POPULAR"
         />
         <Agents />
       </div>

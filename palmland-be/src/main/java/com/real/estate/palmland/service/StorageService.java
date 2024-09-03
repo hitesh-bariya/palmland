@@ -163,7 +163,7 @@ public class StorageService {
 		Date date = Calendar.getInstance().getTime();
 		DateFormat dateFormat = new SimpleDateFormat("yyyy_MM_dd_hh_mm_ss");
 		String extension = multiPart.getOriginalFilename().substring(multiPart.getOriginalFilename().lastIndexOf('.'));
-		return userName + "/" + dbProperty.getPropertyType() + "/" + dbProperty.getPropertyMarquee() + "/"
+		return "Property/"+userName + "/" + dbProperty.getPropertyType() + "/" + dbProperty.getPropertyMarquee() + "/"
 				+ dbProperty.getPropertyName() + "/image_" + count + "_" + dateFormat.format(date) + "_" + extension;
 	}
 

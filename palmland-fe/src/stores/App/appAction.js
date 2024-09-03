@@ -74,14 +74,12 @@ export const setStateList = (data) => {
 };
 
 // Get state List by Coutry
-export const getCityList = (countryCode, stateCode) => {
+export const getCityList = () => {
   return async (dispatch) => {
     try {
       const config = {
         method: "get",
-        // http://51.20.140.56:80/api/v1/common/
-        // url: `https://api.countrystatecity.in/v1/countries/${countryCode}/states/${stateCode}/cities`,
-        url: `http://51.20.140.56:80/api/v1/common/city/${stateCode}`,
+        url: `http://51.20.140.56:80/api/v1/common/city/0`,
         headers: {
           "X-CSCAPI-KEY":
             "enhpbGRjV2FwSGV5b1c5YlllTWFramRtazdmY2dtU1BsZjN4ZUY4Rg==",

@@ -68,6 +68,11 @@ export const navLinks = [
     path: "/reports",
     accesTo: ["ADMIN"],
   },
+  {
+    text: "Career",
+    path: "/career",
+    accesTo: ["USER", "DEALER", "ADMIN"],
+  }
 ];
 
 const Header = () => {
