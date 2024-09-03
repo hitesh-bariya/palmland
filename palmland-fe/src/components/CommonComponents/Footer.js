@@ -37,7 +37,7 @@ export const nav = [
   {
     text: "Contact",
     path: "/contact",
-    accesTo: ["ADMIN"],
+    accesTo: ["USER"],
   },
   ,
   {
