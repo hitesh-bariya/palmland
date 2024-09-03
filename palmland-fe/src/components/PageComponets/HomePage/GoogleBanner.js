@@ -46,7 +46,6 @@ const GoogleBanner = ({ onSubmit }) => {
     setSearch({ ...search, location: value.target.value });
   };
   const onLocationOptionChange = (value) => {
-    debugger
     setSearch({ ...search, location: value });
   };
   useEffect(() => {
