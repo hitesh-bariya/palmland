@@ -39,8 +39,8 @@ const LocationSearch = ({
   }, [currentState, currentCity, suggestions]);
 
   const handleAddress = (data) => {
-    onOptionSelect(data.place_id);
-    
+    onOptionSelect(data.place_id);  
+    setSearchValue(data.description);   
   };
   const getGooglePlaceData = async (cityname, apiKey) => {
     try {
@@ -52,8 +52,6 @@ const LocationSearch = ({
       return '';
     }
   };
-
-
 
   return (
     <Box
@@ -81,8 +79,8 @@ const LocationSearch = ({
                 className="form-control custom-autocomplete"
                 apiKey="AIzaSyA7KuzKnZtkXFnX27_urYqePDfFK5aSt74"
                 onPlaceSelected={(place) => handleAddress(place)}
-                value={searchValue}
-                onChange={(e) => setSearchValue(e.target.value)}
+                value={searchValue}  // Control the value with the state
+                onChange={(e) => setSearchValue(e.target.value)}  // Update the state on change
                 options={{
                   bounds: viewPort && viewPort.northeast && viewPort.southwest ? {
                     north: viewPort.northeast.lat,
