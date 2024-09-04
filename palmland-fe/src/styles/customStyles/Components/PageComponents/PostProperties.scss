@@ -1,0 +1,31 @@
+.google_banner_location_search{
+    .custom-autocomplete{
+        background: transparent;
+        border: none;
+        box-shadow: none;
+        color: #eab258;
+    }
+    .custom-autocomplete::placeholder {
+        color: #eab258;
+    }
+    .location_search_box{
+        margin-right: 20px;
+    }
+}
+
+.post_property_location_search{
+    .custom-autocomplete{
+        padding: 6px 10px;
+        border: 2px solid var(--secondary-color-shade-one);
+        border-radius: 5px;
+        background: none;
+        font-size: 12px;
+        line-height: inherit !important;
+    }
+    label{
+        display: block !important;
+    }
+    .custom-autocomplete::placeholder {
+        content: "" !important;
+    }
+}

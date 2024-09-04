@@ -15,11 +15,13 @@ const LocationSearch = ({
 }) => {
   const [openDropdown, setOpenDropdown] = useState(false);
   const [searchResults, setSearchResults] = useState([]);
-
   const [viewPort, setViewPort] = useState({});  
+  const [searchValue, setSearchValue] = useState("");
+
   useEffect(() => {
     if(null!=cityName){
       getGooglePlaceData(cityName,'AIzaSyA7KuzKnZtkXFnX27_urYqePDfFK5aSt74');
+      setSearchValue("");
     }
   }, [cityName]);
 
@@ -79,6 +81,8 @@ const LocationSearch = ({
                 className="form-control custom-autocomplete"
                 apiKey="AIzaSyA7KuzKnZtkXFnX27_urYqePDfFK5aSt74"
                 onPlaceSelected={(place) => handleAddress(place)}
+                value={searchValue}
+                onChange={(e) => setSearchValue(e.target.value)}
                 options={{
                   bounds: viewPort && viewPort.northeast && viewPort.southwest ? {
                     north: viewPort.northeast.lat,
