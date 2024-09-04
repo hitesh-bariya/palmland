@@ -48,46 +48,6 @@ function CardOne({ property }) {
               />
             );
           })}
-          {/* <Image
-            priority={true}
-            className="carousal__image"
-            width="100%"
-            height="auto"
-            src={image_01}
-            alt="Picture of the author"
-          />
-          <Image
-            priority={true}
-            className="carousal__image"
-            width="100%"
-            height="auto"
-            src={image_02}
-            alt="Picture of the author"
-          />
-          <Image
-            priority={true}
-            className="carousal__image"
-            width="100%"
-            height="auto"
-            src={image_03}
-            alt="Picture of the author"
-          />
-          <Image
-            priority={true}
-            className="carousal__image"
-            width="100%"
-            height="auto"
-            src={image_04}
-            alt="Picture of the author"
-          />
-          <Image
-            priority={true}
-            className="carousal__image"
-            width="100%"
-            height="auto"
-            src={image_01}
-            alt="Picture of the author"
-          /> */}
         </Slider>
       </div>
       <Link rel="preload" href={`/property/${property.id}`}>

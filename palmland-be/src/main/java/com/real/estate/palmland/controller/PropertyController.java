@@ -121,8 +121,8 @@ public class PropertyController {
 	
 	
 	@GetMapping(value = "/place")
-	public String getAllProperty(@RequestParam String placeId, @RequestParam String apiKey) {
-		String url = "https://maps.googleapis.com/maps/api/place/details/json?place_id=" + placeId + "&key=" + apiKey;
+	public String getAllProperty(@RequestParam String cityname, @RequestParam String apiKey) {
+		String url = "https://maps.googleapis.com/maps/api/place/textsearch/json?query=" + cityname + "&key=" + apiKey;
 		RestTemplate restTemplate=new RestTemplate();
         String response = restTemplate.getForObject(url, String.class);
 		return response;
