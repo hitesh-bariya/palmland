@@ -171,7 +171,7 @@ const GoogleBanner = ({ onSubmit }) => {
                     display={"flex"}
                     flexDirection={"column"}
                     w={"100%"}
-                    className="banner__field__block"
+                    className="banner__field__block google_banner_location_search"
                     borderRight={"1px solid #284D5C"}
                   >
                     <Text

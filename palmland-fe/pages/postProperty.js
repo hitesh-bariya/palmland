@@ -12,6 +12,8 @@ import { useDispatch } from "react-redux";
 import * as Yup from "yup";
 import { useToast } from "@chakra-ui/react";
 import { useRouter } from "next/router";
+import LocationSearch from "../src/components/PageComponets/HomePage/LocationSearch";
+import GooglePlacesAutocomplete from 'react-google-places-autocomplete';
 
 const PostProperty = () => {
   const dispatch = useDispatch();
@@ -26,6 +28,18 @@ const PostProperty = () => {
     setFiles(e.target.value);
     // setFiles(e.target.files[0]);
   };
+
+  const [dropDown, setDropdown] = useState(false);
+  const [search, setSearch] = useState({});
+  const [suggestions, setSuggestions] = useState([]);
+
+  const onLocationChange = (value) => {
+    setSearch({ ...search, location: value.target.value });
+  };
+  const onLocationOptionChange = (value) => {
+    setSearch({ ...search, location: value });
+  };
+
   useEffect(() => {
     if (fileObject && (fileObject.length > 10 || fileObject.length < 1)) {
       setFileError("You can't upload more than 10 files");
@@ -145,7 +159,7 @@ const PostProperty = () => {
                 // }, 1000);
               }}
             >
-              {({}) => (
+              {({ setFieldValue }) => (
                 <Form>
                   <Box display="flex" flexDirection={"column"}>
                     <Text
@@ -187,12 +201,37 @@ const PostProperty = () => {
                       Address Details
                     </Text>
                     <SimpleGrid columns={{ base: 1, sm: 1, md: 3 }} spacing={2}>
-                      <FormInput
+                      {/* <FormInput
                         name="addressLine1"
                         type="text"
                         label="Address Line 1"
                         placeholder=""
-                      />
+                      /> */}
+                      <Box 
+                        className="post_property_location_search"
+                      >
+                        <label for="addressLine1" className="form__label">
+                        Address Line 1
+                        </label>
+                        <GooglePlacesAutocomplete
+                          selectProps={{
+                            onChange: (value) => {
+                              // setFieldValue("addressLine1", value.label);
+                              setFieldValue("addressLine1", value.value.place_id);
+                            },
+                            
+                          }}
+                        />
+                        {/* <LocationSearch
+                          dropDown={dropDown}
+                          currentState={search.state}
+                          currentCity={search.city}
+                          searchLocation={search.location}
+                          suggestions={suggestions}
+                          onLocationChange={onLocationChange}
+                          onOptionSelect={onLocationOptionChange}
+                        /> */}
+                      </Box>
                       <FormInput
                         name="addressLine2"
                         type="text"
@@ -232,6 +271,7 @@ const PostProperty = () => {
                           { label: "FEATURED", value: "FEATURED" },
                           { label: "RECENT", value: "RECENT" },
                           { label: "UPCOMING", value: "UPCOMING" },
+                          { label: "POPULAR", value: "POPULAR" },
                         ]}
                       />
                       <FormSelect
