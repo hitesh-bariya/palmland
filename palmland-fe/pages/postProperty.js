@@ -213,6 +213,11 @@ const PostProperty = () => {
                         <label for="addressLine1" className="form__label">
                         Address Line 1
                         </label>
+                        <script
+                          src={`https://maps.googleapis.com/maps/api/js?key=AIzaSyA7KuzKnZtkXFnX27_urYqePDfFK5aSt74&libraries=places`}
+                          strategy="lazyOnload"
+                          onLoad={() => console.log('Google Maps script loaded')}
+                        />
                         <GooglePlacesAutocomplete
                           selectProps={{
                             onChange: (value) => {
