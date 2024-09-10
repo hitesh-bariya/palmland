@@ -14,27 +14,7 @@
 }
 
 .post_property_location_search{
-    label{
-        margin: 3px;
-    }
-    .css-1hb7zxy-IndicatorsContainer{
-        display: none;
-    }
-    .css-1u9des2-indicatorSeparator{
-        display: none;
-    }
-    .css-13cymwt-control{
-        min-height: 30px;
-    }
-    .css-t3ipsp-control{
-        box-shadow: 0 0 0 1px var(--secondary-color-shade-one);
-        min-height: 30px;
-        border-color: var(--secondary-color-shade-one);
-    }
-    .css-t3ipsp-control:hover{
-        border-color: var(--secondary-color-shade-one);
-    }
-    .css-13cymwt-control {
+    .custom-autocomplete{
         padding: 6px 10px;
         border: 2px solid var(--secondary-color-shade-one);
         border-radius: 5px;
@@ -42,25 +22,10 @@
         font-size: 12px;
         line-height: inherit !important;
     }
-    .css-qbdosj-Input{
-        margin: 0;
-        padding: 0;
+    label{
+        display: block !important;
     }
-    .css-1fdsijx-ValueContainer{
-        padding: 0;
+    .custom-autocomplete::placeholder {
+        content: "" !important;
     }
-    // .custom-autocomplete{
-    //     padding: 6px 10px;
-    //     border: 2px solid var(--secondary-color-shade-one);
-    //     border-radius: 5px;
-    //     background: none;
-    //     font-size: 12px;
-    //     line-height: inherit !important;
-    // }
-    // label{
-    //     display: block !important;
-    // }
-    // .custom-autocomplete::placeholder {
-    //     content: "" !important;
-    // }
 }

@@ -70,6 +70,12 @@ const LocationSearch = ({
           <>
             <PopoverTrigger>
               <Autocomplete
+                style={{
+                  background: "transparent",
+                  border: "none",
+                  boxShadow: "none",
+                  color: "#eab258",
+                }}
                 className="form-control custom-autocomplete"
                 apiKey="AIzaSyA7KuzKnZtkXFnX27_urYqePDfFK5aSt74"
                 onPlaceSelected={(place) => handleAddress(place)}
