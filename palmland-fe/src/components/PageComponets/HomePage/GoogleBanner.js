@@ -25,7 +25,7 @@ const GoogleBanner = ({ onSubmit }) => {
   const [search, setSearch] = useState({});
   const [dropDown, setDropdown] = useState(false);
   const [cityData, setCityData] = useState([]);
-
+  const [cityName, setCityName] = useState(null);
   const [suggestions, setSuggestions] = useState([]);
   const onChange = (e) => {
     const name = e.target.name;
@@ -36,7 +36,7 @@ const GoogleBanner = ({ onSubmit }) => {
     const name = e.target.selectedOptions[0].text;
     const value = e.target.value;
     setSearch({ ...search, cityText: name, city: value });
-
+    setCityName(name);
   };
   const onLocationChange = (value) => {
     setSearch({ ...search, location: value.target.value });
@@ -188,6 +188,7 @@ const GoogleBanner = ({ onSubmit }) => {
                       suggestions={suggestions}
                       onLocationChange={onLocationChange}
                       onOptionSelect={onLocationOptionChange}
+                      cityName={cityName}
                     />
                   </Box>
                 </GridItem>
