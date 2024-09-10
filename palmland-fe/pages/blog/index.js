@@ -73,7 +73,7 @@ const Blog = () => {
               Featured Blog
             </Text>
             <Slider {...settings}>
-              {blogs.slice(0, 3).map((blog) => ( // Display top 3 blogs in slider
+              {blogs.slice(0, 1).map((blog) => ( // Display the first blog in slider
                 <div key={blog.id}>
                   <div className="row">
                     <div className="col-md-6" style={{ paddingRight: "30px" }}>
@@ -157,7 +157,7 @@ const Blog = () => {
               alignItems="flex-end"
               paddingTop={"30px"}
             >
-              {blogs.slice(0, visibleBlogs).map((blog) => (
+              {blogs.slice(1, visibleBlogs + 1).map((blog) => ( // Start from the second blog
                 <GridItem colSpan={{ base: 5, md: 1 }} key={blog.id}>
                   <Box w={"100%"} className="banner__field__block">
                     <div
@@ -213,7 +213,7 @@ const Blog = () => {
               ))}
             </Grid>
 
-            {visibleBlogs < blogs.length && (
+            {visibleBlogs < blogs.length - 1 && ( // Hide "Load More" if all blogs are loaded
               <div
                 style={{
                   width: "100%",
