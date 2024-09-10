@@ -1,4 +1,4 @@
-FROM node:alpine AS builder
+FROM node:16
 RUN mkdir -p /palmland_fe
 WORKDIR /palmland_fe
 COPY . .
