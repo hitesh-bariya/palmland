@@ -102,7 +102,6 @@ const Blog = () => {
                       </Text>
                       <Text
                         variant="blog_text"
-                        style={{ fontSize: "15px", lineHeight: "24px" }}
                         mb={{ base: "10px", lg: "20px" }}
                       >
                         {blog.content}
@@ -161,59 +160,64 @@ const Blog = () => {
               {blogs.slice(1, visibleBlogs + 1).map((blog) => ( // Start from the second blog
                 <GridItem colSpan={{ base: 5, md: 1 }} key={blog.id}>
                   <Box w={"100%"} className="banner__field__block">
-                    <div
-                      className="card"
-                      style={{
-                        border: "2px solid #EAB258",
-                        borderRadius: "25px",
-                        padding: "10px",
-                        height: '610px'
-                      }}
-                    >
-                      <img
-                        src={blog.imageKey}
-                        alt={blog.heading}
-                        style={{ paddingBottom: "30px", width: "100%", maxHeight: "250px", borderTopLeftRadius: "15px", borderTopRightRadius: "15px" }}
-                      />
-                      <div style={{ padding: "0 10px", height: "350px" }}>
-                        <p
-                          style={{
-                            fontSize: "15px",
-                            lineHeight: "20.3px",
-                            fontWeight: "700",
-                          }}
-                        >
-                          {blog.heading}
-                        </p>
-                        <p>{blog.content}</p>
-                      </div>
-                      <div style={{verticalAlign: "bottom"}}>
+                    <Link href={`/blog/${blog.id}`} as={`/blog/${blog.id}`}>
+                      <div
+                        className="card"
+                        style={{
+                          border: "2px solid #EAB258",
+                          borderRadius: "25px",
+                          padding: "10px",
+                        }}
+                      >
                         <img
-                          src="/assets/icons/hr-golden.png"
-                          height="3px"
-                          width="18px"
-                          alt="separator"
-                          style={{ paddingBottom: "10px" }}
+                          src={blog.imageKey}
+                          alt={blog.heading}
+                          style={{ paddingBottom: "30px", width: "100%", maxHeight: "250px", borderTopLeftRadius: "15px", borderTopRightRadius: "15px" }}
                         />
-                        <Text
-                          variant="s_regular"
-                          style={{
-                            fontSize: "9px",
-                            lineHeight: "14.06px",
-                            color: "#000",
-                            width: "100%",
-                            marginBottom: "20px",
-                          }}
-                        >
-                          {/* <span style={{ float: "left" }}>{blog.date}</span> */}
-                          <span style={{ float: "left" }}>11/09/2024</span>
-                            <span style={{ float: "right" }}>
-                              {/* {blog.readTime} min read */}
-                              10 min read
-                            </span>
-                        </Text>
+                        <div style={{ padding: "0 10px", height: "130px" }}>
+                          <p
+                            style={{
+                              fontSize: "15px",
+                              lineHeight: "20.3px",
+                              fontWeight: "700",
+                            }}
+                          >
+                            {blog.heading}
+                          </p>
+                          <Text
+                            variant="blog_slider_content"
+                          >
+                            {blog.content}
+                          </Text>
+                        </div>
+                        <div style={{verticalAlign: "bottom"}}>
+                          <img
+                            src="/assets/icons/hr-golden.png"
+                            height="3px"
+                            width="18px"
+                            alt="separator"
+                            style={{ paddingBottom: "10px" }}
+                          />
+                          <Text
+                            variant="s_regular"
+                            style={{
+                              fontSize: "9px",
+                              lineHeight: "14.06px",
+                              color: "#000",
+                              width: "100%",
+                              marginBottom: "20px",
+                            }}
+                          >
+                            {/* <span style={{ float: "left" }}>{blog.date}</span> */}
+                            <span style={{ float: "left" }}>11/09/2024</span>
+                              <span style={{ float: "right" }}>
+                                {/* {blog.readTime} min read */}
+                                10 min read
+                              </span>
+                          </Text>
+                        </div>
                       </div>
-                    </div>
+                    </Link>
                   </Box>
                 </GridItem>
               ))}

@@ -97,6 +97,25 @@ const Text: ComponentStyleConfig = {
       fontFamily: "Roboto",
       fontWeight: 400,
     },
+    blog_text: {
+      fontSize: "15px", 
+      lineHeight: "24px", 
+  },
+  blog_slider_content: {
+    fontSize: "15px", 
+      lineHeight: "24px", 
+      display: "-webkit-box",
+      WebkitBoxOrient: "vertical",
+      WebkitLineClamp: 2,
+      // -webkit-box-orient: "vertical",
+      // -webkit-line-clamp: 2, 
+      overflow: "hidden", 
+      textOverflow: "ellipsis",
+      // _hover: {
+      //   overflow: "visible",
+      //   display: "block"
+      // },
+  }
   },
 
   // default values for `size` and `variant`
