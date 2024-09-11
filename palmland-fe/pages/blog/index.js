@@ -85,6 +85,7 @@ const Blog = () => {
                         style={{
                           filter: "brightness(20%)",
                           borderRadius: "7.5px",
+                          maxHeight: "300px",
                         }}
                       />
                     </div>
@@ -166,14 +167,15 @@ const Blog = () => {
                         border: "2px solid #EAB258",
                         borderRadius: "25px",
                         padding: "10px",
+                        height: '610px'
                       }}
                     >
                       <img
                         src={blog.imageKey}
                         alt={blog.heading}
-                        style={{ paddingBottom: "30px", width: "100%" }}
+                        style={{ paddingBottom: "30px", width: "100%", maxHeight: "250px", borderTopLeftRadius: "15px", borderTopRightRadius: "15px" }}
                       />
-                      <div style={{ padding: "0 10px" }}>
+                      <div style={{ padding: "0 10px", height: "350px" }}>
                         <p
                           style={{
                             fontSize: "15px",
@@ -184,6 +186,8 @@ const Blog = () => {
                           {blog.heading}
                         </p>
                         <p>{blog.content}</p>
+                      </div>
+                      <div style={{verticalAlign: "bottom"}}>
                         <img
                           src="/assets/icons/hr-golden.png"
                           height="3px"
@@ -201,10 +205,12 @@ const Blog = () => {
                             marginBottom: "20px",
                           }}
                         >
-                          <span style={{ float: "left" }}>{blog.date}</span>
-                          <span style={{ float: "right" }}>
-                            {blog.readTime} min read
-                          </span>
+                          {/* <span style={{ float: "left" }}>{blog.date}</span> */}
+                          <span style={{ float: "left" }}>11/09/2024</span>
+                            <span style={{ float: "right" }}>
+                              {/* {blog.readTime} min read */}
+                              10 min read
+                            </span>
                         </Text>
                       </div>
                     </div>
