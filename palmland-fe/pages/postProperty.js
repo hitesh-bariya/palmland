@@ -2,16 +2,15 @@ import FormInput from "@/components/CommonComponents/FormInput";
 import FormSelect from "@/components/CommonComponents/FormSelect";
 import FormTextArea from "@/components/CommonComponents/FormTextArea";
 import PhoneInput from "@/components/CommonComponents/PhoneInput";
-import calltoMap from "@/helper/callToMap";
 import { postPropertyData } from "@/stores/PostProperty/postPropertyAction";
 import { Box, Grid, GridItem, SimpleGrid, Text } from "@chakra-ui/react";
 import { Form, Formik } from "formik";
-import React, { useEffect, useRef } from "react";
-import { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
 import * as Yup from "yup";
 import { useToast } from "@chakra-ui/react";
 import { useRouter } from "next/router";
+import LocationSearch from "@/components/PageComponets/HomePage/LocationSearch";
 
 const PostProperty = () => {
   const dispatch = useDispatch();
@@ -21,11 +20,13 @@ const PostProperty = () => {
   const [error, setError] = useState(true);
   const toast = useToast();
   const router = useRouter();
+  const [suggestions, setSuggestions] = useState([]);
+
   const onFileChange = (e) => {
     setFileObject(e.target.files);
     setFiles(e.target.value);
-    // setFiles(e.target.files[0]);
   };
+
   useEffect(() => {
     if (fileObject && (fileObject.length > 10 || fileObject.length < 1)) {
       setFileError("You can't upload more than 10 files");
@@ -35,7 +36,9 @@ const PostProperty = () => {
       setError(false);
     }
   }, [fileObject]);
+
   const onPropertySubmit = (propertyData, file) => {
+    debugger
     if (!error) {
       var form = new FormData();
       for (let i = 0; i < fileObject.length; i++) {
@@ -56,6 +59,7 @@ const PostProperty = () => {
       postPropertyData(form, callback);
     }
   };
+
   return (
     <div className="custom__container service__page">
       <div className="custom__row">
@@ -95,7 +99,7 @@ const PostProperty = () => {
                   .trim()
                   .min(3, "Must be 3 characters or more")
                   .required("Required"),
-                // price: Yup.required("Required"),
+                price: Yup.number().required("Required"),
                 addressLine1: Yup.string()
                   .trim()
                   .min(3, "Must be 3 characters or more")
@@ -106,17 +110,16 @@ const PostProperty = () => {
                   .required("Required"),
                 pinCode: Yup.string()
                   .trim()
-                  .min(3, "Invalid pincode") //invalid zipcode
-                  .max(7, "Invalid pincode") //invalid zipcode
-                  .required("required")
+                  .min(3, "Invalid pincode")
+                  .max(7, "Invalid pincode")
+                  .required("Required")
                   .nullable(),
                 location: Yup.string()
                   .trim()
-                  .min(3, "Must be 3 characters or more") //"At least 3 characters long"
-                  .required("required")
+                  .min(3, "Must be 3 characters or more")
+                  .required("Required")
                   .nullable(),
-
-                // rooms: Yup.required("Required"),
+                rooms: Yup.number().required("Required"),
               })}
               onSubmit={(values, actions) => {
                 const payload = {
@@ -129,7 +132,7 @@ const PostProperty = () => {
                     landMark: values.landMark,
                     pinCode: values.pinCode,
                     location: values.location,
-                    country: "",
+                    country: values.country,
                   },
                   propertyMarquee: values.propertyMarquee,
                   propertyType: values.propertyType,
@@ -138,14 +141,10 @@ const PostProperty = () => {
                   },
                 };
                 onPropertySubmit(payload, values.file);
-                // setTimeout(() => {
-                //   // alert(JSON.stringify(payload, null, 2));
-                //   // dispatch(postPropertyData(payload));
-                //   actions.setSubmitting(false);
-                // }, 1000);
+                actions.setSubmitting(false);
               }}
             >
-              {({}) => (
+              {({setFieldValue, values}) => (
                 <Form>
                   <Box display="flex" flexDirection={"column"}>
                     <Text
@@ -177,6 +176,7 @@ const PostProperty = () => {
                         placeholder=""
                       />
                     </SimpleGrid>
+
                     <Text
                       variant="p_bold"
                       my="50px 0px 20px"
@@ -211,13 +211,29 @@ const PostProperty = () => {
                         label="Pincode"
                         placeholder=""
                       />
-                      <FormInput
-                        name="location"
-                        type="text"
-                        label="Location"
-                        placeholder=""
+                      {/* Adding LocationSearch component */}
+                      <GridItem colSpan={3}>
+                      <LocationSearch
+                        currentState={values.state}
+                        currentCity={values.city}
+                        searchLocation={values.location}
+                        suggestions={suggestions}
+                        onLocationChange={(loc) => setFieldValue("location", loc)}
+                        onOptionSelect={(loc) => setFieldValue("location", loc)}
                       />
+                      </GridItem>
+                    </SimpleGrid>
 
+                    <Text
+                      variant="p_bold"
+                      my="50px 0px 20px"
+                      size={{ base: "16", lg: "18" }}
+                      mb="10px"
+                      mt="20px"
+                    >
+                      Additional Info
+                    </Text>
+                    <SimpleGrid columns={{ base: 1, sm: 1, md: 3 }} spacing={2}>
                       <FormInput
                         name="rooms"
                         type="number"
@@ -240,7 +256,7 @@ const PostProperty = () => {
                         placeholder=""
                         options={[
                           { label: "Commercial", value: "Commercial" },
-                          { label: "Residantial", value: "Residantial" },
+                          { label: "Residential", value: "Residential" },
                           { label: "Free/Hold", value: "Free/Hold" },
                           { label: "Non Free Hold", value: "Non Free Hold" },
                           { label: "Plots", value: "Plots" },
