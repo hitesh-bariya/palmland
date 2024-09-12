@@ -59,7 +59,6 @@ const LocationSearch = ({
       onMouseLeave={() => {
         setOpenDropdown(false);
       }}
-      style={{ marginRight: "20px" }}
     >
       <Popover
         isOpen={openDropdown}
