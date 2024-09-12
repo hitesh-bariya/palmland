@@ -212,16 +212,25 @@ const PostProperty = () => {
                         placeholder=""
                       />
                       {/* Adding LocationSearch component */}
-                      <GridItem colSpan={3}>
-                      <LocationSearch
-                        currentState={values.state}
-                        currentCity={values.city}
-                        searchLocation={values.location}
-                        suggestions={suggestions}
-                        onLocationChange={(loc) => setFieldValue("location", loc)}
-                        onOptionSelect={(loc) => setFieldValue("location", loc)}
-                      />
-                      </GridItem>
+                      {/* <GridItem 
+                        colSpan={3}
+                      > */}
+                        <Box 
+                          className="post_property_location_search"
+                        >
+                          <label for="addressLine1" className="form__label">
+                            Location
+                          </label>
+                          <LocationSearch
+                            currentState={values.state}
+                            currentCity={values.city}
+                            searchLocation={values.location}
+                            suggestions={suggestions}
+                            onLocationChange={(loc) => setFieldValue("location", loc)}
+                            onOptionSelect={(loc) => setFieldValue("location", loc)}
+                          />
+                        </Box>
+                      {/* </GridItem> */}
                     </SimpleGrid>
 
                     <Text
