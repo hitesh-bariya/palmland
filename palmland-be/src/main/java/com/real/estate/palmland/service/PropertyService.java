@@ -2,7 +2,6 @@ package com.real.estate.palmland.service;
 
 import java.util.List;
 
-import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.domain.Specification;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -21,6 +20,8 @@ public interface PropertyService {
 	public ResponseVO<List<PropertyDto>> findBySearchCriteria(Specification<Property> spec);
 	
 	public ResponseVO<List<Image>> findImagiesByName(String propertyName);
+	
+	public ResponseVO<PropertyDto> findProperyById(Integer id);
 	
 	public ResponseVO<List<PropertyDto>> findAllProperties();
 	

@@ -26,24 +26,27 @@ export const nav = [
   }, {
     text: "News Letter",
     path: "/newsletter",
-    accesTo: ["USER"],
+    accesTo: ["USER","DEALER"],
   },
   {
     text: "Blog",
     path: "/blog",
-    accesTo: ["ADMIN", "USER"],
+    accesTo: ["ADMIN", "USER","DEALER"],
   },
 
   {
     text: "Contact",
     path: "/contact",
-    accesTo: ["USER"],
+    accesTo: ["USER","DEALER"],
+  },{
+    text: "Post Property",
+    path: "/postProperty",
+    accesTo: ["DEALER"],
   },
-  ,
   {
     text: "Career",
     path: "/Career",
-    accesTo: ["USER"],
+    accesTo: ["USER", "DEALER", "ADMIN"],
   }
 ];
 const Footer = () => {
