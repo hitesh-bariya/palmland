@@ -3,8 +3,6 @@ package com.real.estate.palmland.service;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
-import java.nio.file.Path;
-import java.nio.file.Paths;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -20,7 +18,6 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.amazonaws.services.s3.AmazonS3;
-import com.amazonaws.services.s3.model.CannedAccessControlList;
 import com.amazonaws.services.s3.model.DeleteObjectRequest;
 import com.amazonaws.services.s3.model.ObjectListing;
 import com.amazonaws.services.s3.model.PutObjectRequest;
@@ -28,9 +25,11 @@ import com.amazonaws.services.s3.model.S3ObjectSummary;
 import com.real.estate.palmland.entity.Agent;
 import com.real.estate.palmland.entity.Blog;
 import com.real.estate.palmland.entity.Image;
+import com.real.estate.palmland.entity.OurService;
 import com.real.estate.palmland.entity.Property;
 import com.real.estate.palmland.repository.AgentRepository;
 import com.real.estate.palmland.repository.BlogRepository;
+import com.real.estate.palmland.repository.OurServiceRepository;
 
 @Service
 public class StorageService {
@@ -40,18 +39,15 @@ public class StorageService {
 	private String bucketName;
 
 	private AmazonS3 s3Client;
-	
-	/*@Value("${upload.path}")
-	private String uploadPath;
-	
-	@Value("${upload.awsflag}")
-	private String uploadAwsflag;*/
 
 	@Autowired
 	private com.real.estate.palmland.repository.ImageRepository imageRepository;
 	
 	@Autowired
 	BlogRepository blogRepository;
+	
+	@Autowired
+	OurServiceRepository ourServiceRepository;
 	
 	@Autowired
 	AgentRepository agentRepository;
@@ -70,7 +66,6 @@ public class StorageService {
 
 				File file = convertMultiPartToFile(multipartFile);
 				String fileName = generateFileName(multipartFile, count, userName, dbProperty);
-				//uploadFileToServert(multipartFile,fileName);
 				uploadFileTos3bucket(fileName, file);
 				file.delete();
 				Image image = new Image();
@@ -91,15 +86,27 @@ public class StorageService {
 	}
 	
 	public void uploadBlog(MultipartFile multipartFile, Blog blog) {
-		List<Image> imageList = new ArrayList<>();
 		try {
 			File file = convertMultiPartToFile(multipartFile);
 			String fileName = generateFileNameForBlog(multipartFile, 1, blog);
-			//uploadFileToServert(multipartFile,fileName);
 			uploadFileTos3bucket(fileName, file);
 			file.delete();
 			blog.setImageKey(fileName);
 			blogRepository.save(blog);
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+	
+	public void uploadOurService(MultipartFile multipartFile, OurService ourService) {
+		try {
+			File file = convertMultiPartToFile(multipartFile);
+			String fileName = generateFileNameForOurService(multipartFile, 1, ourService);
+			uploadFileTos3bucket(fileName, file);
+			file.delete();
+			ourService.setImageKey(fileName);
+			ourServiceRepository.save(ourService);
 
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -174,6 +181,13 @@ public class StorageService {
 		return "Blog/" + blog.getId() + "/image_" + count + "_" + dateFormat.format(date) + "_" + extension;
 	}
 	
+	private String generateFileNameForOurService(MultipartFile multiPart, int count,OurService ourService) {
+		Date date = Calendar.getInstance().getTime();
+		DateFormat dateFormat = new SimpleDateFormat("yyyy_MM_dd_hh_mm_ss");
+		String extension = multiPart.getOriginalFilename().substring(multiPart.getOriginalFilename().lastIndexOf('.'));
+		return "OurService/" + ourService.getId() + "/image_" + count + "_" + dateFormat.format(date) + "_" + extension;
+	}
+	
 	private String generateFileNameForAgent(MultipartFile multiPart, int count,Agent agent) {
 		Date date = Calendar.getInstance().getTime();
 		DateFormat dateFormat = new SimpleDateFormat("yyyy_MM_dd_hh_mm_ss");
@@ -192,21 +206,6 @@ public class StorageService {
 	private void uploadFileTos3bucket(String fileName, File file) {
 		s3Client.putObject(
 				new PutObjectRequest(bucketName, fileName, file));
-	}
-
-	private void uploadFileToServert(MultipartFile multipartFile,String fileName) {
-		Path uploadPath = Paths.get("src/main/resources/images");
-
-		try {
-			
-			File file = new File(uploadPath+ fileName);
-			file.createNewFile();
-			
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-
 	}
 
 }

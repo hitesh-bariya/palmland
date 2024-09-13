@@ -2,14 +2,13 @@ package com.real.estate.palmland.service.impl;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 import org.modelmapper.ModelMapper;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -91,7 +90,6 @@ public class PropertyServiceImpl implements PropertyService {
 		location.setLandMark(propertyDto.getLocation().getLandMark());
 		location.setPinCode(propertyDto.getLocation().getPinCode());
 		location.setProperty(property);
-
 		Amenities amenities = new Amenities(); //
 		amenities.setRooms(propertyDto.getAmenities().getRooms());
 		amenities.setProperty(property);
@@ -112,76 +110,74 @@ public class PropertyServiceImpl implements PropertyService {
 
 	private void convertToPropertyDto(List<Property> properties, List<PropertyDto> propertyDtoList) {
 		for (Property property : properties) {
-			PropertyDto propertyDto = new PropertyDto();
-			LocationDto locationDto = new LocationDto();
-			AmenitiesDto amenitiesDto = new AmenitiesDto();
-
-			propertyDto.setPropertyName(property.getPropertyName());
-			propertyDto.setPropertyDesc(property.getPropertyDesc());
-			propertyDto.setPropertyType(property.getPropertyType());
-			propertyDto.setPropertyMarquee(property.getPropertyMarquee());
-			propertyDto.setPrice(property.getPrice());
-			propertyDto.setId(property.getId());
-			List<ImageDto> imageData = new ArrayList<>();
-			List<Image> imageList = imageRepository.findByProperty(property);
-
-			if ((null != imageList) && imageList.size() > 0) {
-				for (Image image : imageList) {
-					ImageDto img = new ImageDto();
-					img.setId(image.getId());
-					img.setName(image.getName());
-					img.setType(image.getType());
-					img.setPath(awsURL + "/" + image.getPath().replaceAll("@", "%40"));
-					imageData.add(img);
-				}
-
-			}
-			if (!imageData.isEmpty()) {
-				propertyDto.setImgData(imageData);
-			}
-
-			if (property.getLocation() != null) {
-				locationDto.setId(property.getLocation().getId());
-				locationDto.setAddressLine1(property.getLocation().getAddressLine1());
-				locationDto.setAddressLine2(property.getLocation().getAddressLine2());
-				locationDto.setCity(property.getLocation().getCity());
-				locationDto.setState(property.getLocation().getState());
-				locationDto.setCountry(property.getLocation().getCountry());
-				locationDto.setPinCode(property.getLocation().getPinCode());
-				locationDto.setLandMark(property.getLocation().getLandMark());
-				propertyDto.setLocation(locationDto);
-			}
-			if (property.getAmenities() != null) {
-				amenitiesDto.setId(property.getAmenities().getId());
-				amenitiesDto.setRooms(property.getAmenities().getRooms());
-				propertyDto.setAmenities(amenitiesDto);
-			}
+			PropertyDto propertyDto = convertPropertyDTO(property);
 			propertyDtoList.add(propertyDto);
 		}
 	}
 
+	private PropertyDto convertPropertyDTO(Property property) {
+		PropertyDto propertyDto = new PropertyDto();
+		LocationDto locationDto = new LocationDto();
+		AmenitiesDto amenitiesDto = new AmenitiesDto();
+		propertyDto.setPropertyName(property.getPropertyName());
+		propertyDto.setPropertyDesc(property.getPropertyDesc());
+		propertyDto.setPropertyType(property.getPropertyType());
+		propertyDto.setPropertyMarquee(property.getPropertyMarquee());
+		propertyDto.setPrice(property.getPrice());
+		propertyDto.setId(property.getId());
+		List<ImageDto> imageData = new ArrayList<>();
+		List<Image> imageList = imageRepository.findByProperty(property);
+
+		if ((null != imageList) && imageList.size() > 0) {
+			for (Image image : imageList) {
+				ImageDto img = new ImageDto();
+				img.setId(image.getId());
+				img.setName(image.getName());
+				img.setType(image.getType());
+				img.setPath(awsURL + "/" + image.getPath().replaceAll("@", "%40"));
+				imageData.add(img);
+			}
+
+		}
+		if (!imageData.isEmpty()) {
+			propertyDto.setImgData(imageData);
+		}
+
+		if (property.getLocation() != null) {
+			locationDto.setId(property.getLocation().getId());
+			locationDto.setAddressLine1(property.getLocation().getAddressLine1());
+			locationDto.setAddressLine2(property.getLocation().getAddressLine2());
+			locationDto.setCity(property.getLocation().getCity());
+			locationDto.setState(property.getLocation().getState());
+			locationDto.setCountry(property.getLocation().getCountry());
+			locationDto.setPinCode(property.getLocation().getPinCode());
+			locationDto.setLandMark(property.getLocation().getLandMark());
+			propertyDto.setLocation(locationDto);
+		}
+		if (property.getAmenities() != null) {
+			amenitiesDto.setId(property.getAmenities().getId());
+			amenitiesDto.setRooms(property.getAmenities().getRooms());
+			propertyDto.setAmenities(amenitiesDto);
+		}
+		return propertyDto;
+	}
+
 	@Override
 	public ResponseVO<List<PropertyDto>> findBySearchCriteria(Specification<Property> spec) {
-		
-		ResponseVO<List<PropertyDto>> response=new ResponseVO<List<PropertyDto>>();
-		
+		ResponseVO<List<PropertyDto>> response = new ResponseVO<List<PropertyDto>>();
 		List<Property> searchResult = propertyRepository.findAll(spec);
-		
-		if(!searchResult.isEmpty()) {	
+		if (!searchResult.isEmpty()) {
 			List<PropertyDto> propertyDtoList = new ArrayList<>();
 			convertToPropertyDto(searchResult, propertyDtoList);
 			response.setStatus(200);
-			response.setData(propertyDtoList);		
+			response.setData(propertyDtoList);
 		}
-
-
 		return response;
-
 	}
 
 	@Override
 	public ResponseVO<List<Image>> findImagiesByName(String propertyName) {
-		ResponseVO<List<Image>> response=new ResponseVO<List<Image>>();
+		ResponseVO<List<Image>> response = new ResponseVO<List<Image>>();
 		response.setStatus(200);
 		response.setData(imageRepository.findByName(propertyName));
 		return response;
@@ -189,7 +185,7 @@ public class PropertyServiceImpl implements PropertyService {
 
 	@Override
 	public ResponseVO<List<PropertyDto>> findAllProperties() {
-		ResponseVO<List<PropertyDto>> response=new ResponseVO<List<PropertyDto>>();
+		ResponseVO<List<PropertyDto>> response = new ResponseVO<List<PropertyDto>>();
 		response.setStatus(200);
 		response.setData(getAllProperties());
 		return response;
@@ -200,6 +196,18 @@ public class PropertyServiceImpl implements PropertyService {
 		Property dbProperty = propertyRepository.getPropertyById(id);
 		dbProperty.setActive(false);
 		return "Property deleted successfully for id :: " + id;
+	}
+
+	@Override
+	public ResponseVO<PropertyDto> findProperyById(Integer id) {
+		ResponseVO<PropertyDto> response = new ResponseVO<PropertyDto>();
+		Optional<Property> propertyData = propertyRepository.findById(id);
+		if (propertyData.isPresent()) {
+			Property property = propertyData.get();
+			PropertyDto propertyDto = convertPropertyDTO(property);
+			response.setData(propertyDto);
+		}
+		return response;
 	}
 
 }
