@@ -170,13 +170,13 @@ const PostProperty = () => {
                         placeholder=""
                       />
                     </SimpleGrid>
-
+                    <hr></hr>
                     <Text
                       variant="p_bold"
                       my="50px 0px 20px"
                       size={{ base: "16", lg: "18" }}
                       mb="10px"
-                      mt="20px"
+                      mt="10px"
                     >
                       Additional Info
                     </Text>
@@ -231,6 +231,7 @@ const PostProperty = () => {
                           placeholder=""
                           multiple
                           value={files}
+                          style={{marginBottom: "10px"}}
                           onChange={(e) => onFileChange(e)}
                         />
                         <Text color={"red"} fontSize={"12px"}>
@@ -238,13 +239,13 @@ const PostProperty = () => {
                         </Text>
                       </Box>
                     </SimpleGrid>
-                    
+                    <hr></hr>
                     <Text
                       variant="p_bold"
                       my="50px 0px 20px"
                       size={{ base: "16", lg: "18" }}
                       mb="10px"
-                      mt="20px"
+                      mt="10px"
                     >
                       Address Details
                     </Text>
