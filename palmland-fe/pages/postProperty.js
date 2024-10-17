@@ -125,7 +125,7 @@ const PostProperty = () => {
                     addressLine2: values.addressLine2,
                     landMark: values.landMark,
                     pinCode: values.pinCode,
-                   // location: values.location,
+                    // location: values.location,
                     country: values.country,
                   },
                   propertyMarquee: values.propertyMarquee,
@@ -138,7 +138,7 @@ const PostProperty = () => {
                 actions.setSubmitting(false);
               }}
             >
-              {({setFieldValue, values}) => (
+              {({ setFieldValue, values }) => (
                 <Form>
                   <Box display="flex" flexDirection={"column"}>
                     <Text
@@ -181,14 +181,21 @@ const PostProperty = () => {
                       Address Details
                     </Text>
                     <SimpleGrid columns={{ base: 1, sm: 1, md: 3 }} spacing={2}>
-                     {/*
-                      <FormInput
-                        name="addressLine1"
-                        type="text"
-                        label="Address Line 1"
-                        placeholder=""
-                      />*/
-                     } 
+                      <Box
+                        className="post_property_location_search"
+                      >
+                        <label for="addressLine1" className="form__label">
+                          Address Line 1
+                        </label>
+                        <LocationSearch
+                          currentState={values.state}
+                          currentCity={values.city}
+                          searchLocation={values.addressLine1}
+                          suggestions={suggestions}
+                          onLocationChange={(loc) => setFieldValue("addressLine1", loc)}
+                          onOptionSelect={(loc) => setFieldValue("addressLine1", loc)}
+                        />
+                      </Box>
                       <FormInput
                         name="addressLine2"
                         type="text"
@@ -207,26 +214,21 @@ const PostProperty = () => {
                         label="Pincode"
                         placeholder=""
                       />
-                      {/* Adding LocationSearch component */}
-                      {/* <GridItem 
-                        colSpan={3}
-                      > */}
-                      <Box 
-                        className="post_property_location_search"
-                      >
-                        <label for="addressLine1" className="form__label">
-                          Location
-                        </label>
-                        <LocationSearch
-                          currentState={values.state}
-                          currentCity={values.city}
-                          searchLocation={values.addressLine1 }
-                          suggestions={suggestions}
-                          onLocationChange={(loc) => setFieldValue("addressLine1", loc)}
-                          onOptionSelect={(loc) => setFieldValue("addressLine1", loc)}
-                        />
-                      </Box>
-                      {/* </GridItem> */}
+
+                      <FormInput
+                        name="city"
+                        type="number"
+                        label="city"
+                        placeholder=""
+                      />
+
+                      <FormInput
+                        name="country"
+                        type="number"
+                        label="country"
+                        placeholder=""
+                      />
+
                     </SimpleGrid>
 
                     <Text
