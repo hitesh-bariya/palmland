@@ -76,7 +76,7 @@ const Master = () => {
                         className="banner__field__block"
                       >
                         <div class="card" style={{border: "2px solid #EAB258", padding: "30px", textAlign: "center", alignItems: "center "}}>
-                          <p style={{fontSize: "23px", lineHeight: "43px", fontWeight: "700"}}>Real estate</p>
+                          <p style={{fontSize: "23px", lineHeight: "43px", fontWeight: "700"}}>Agents</p>
                         </div>
                       </Box>
                     </GridItem>
