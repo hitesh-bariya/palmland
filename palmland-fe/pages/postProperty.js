@@ -38,7 +38,6 @@ const PostProperty = () => {
   }, [fileObject]);
 
   const onPropertySubmit = (propertyData, file) => {
-    debugger
     if (!error) {
       var form = new FormData();
       for (let i = 0; i < fileObject.length; i++) {
@@ -114,11 +113,6 @@ const PostProperty = () => {
                   .max(7, "Invalid pincode")
                   .required("Required")
                   .nullable(),
-                location: Yup.string()
-                  .trim()
-                  .min(3, "Must be 3 characters or more")
-                  .required("Required")
-                  .nullable(),
                 rooms: Yup.number().required("Required"),
               })}
               onSubmit={(values, actions) => {
@@ -131,7 +125,7 @@ const PostProperty = () => {
                     addressLine2: values.addressLine2,
                     landMark: values.landMark,
                     pinCode: values.pinCode,
-                    location: values.location,
+                   // location: values.location,
                     country: values.country,
                   },
                   propertyMarquee: values.propertyMarquee,
@@ -187,12 +181,14 @@ const PostProperty = () => {
                       Address Details
                     </Text>
                     <SimpleGrid columns={{ base: 1, sm: 1, md: 3 }} spacing={2}>
+                     {/*
                       <FormInput
                         name="addressLine1"
                         type="text"
                         label="Address Line 1"
                         placeholder=""
-                      />
+                      />*/
+                     } 
                       <FormInput
                         name="addressLine2"
                         type="text"
@@ -224,10 +220,10 @@ const PostProperty = () => {
                         <LocationSearch
                           currentState={values.state}
                           currentCity={values.city}
-                          searchLocation={values.location}
+                          searchLocation={values.addressLine1 }
                           suggestions={suggestions}
-                          onLocationChange={(loc) => setFieldValue("location", loc)}
-                          onOptionSelect={(loc) => setFieldValue("location", loc)}
+                          onLocationChange={(loc) => setFieldValue("addressLine1", loc)}
+                          onOptionSelect={(loc) => setFieldValue("addressLine1", loc)}
                         />
                       </Box>
                       {/* </GridItem> */}

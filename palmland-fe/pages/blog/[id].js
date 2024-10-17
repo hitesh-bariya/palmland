@@ -12,9 +12,6 @@ const BlogDetailPage = () => {
   const [blogData, setBlogData] = useState();
 
   useEffect(() => {
-    // const newData = BlogData.find((blog) => blog.id === Number(id));
-    // setBlogData(newData);
-    // setLoading(false);
 
     const getCityPlaceData = async () => {
       try {
@@ -25,12 +22,10 @@ const BlogDetailPage = () => {
         const data = await response.json();
         setBlogData(data);
         setLoading(false);
-        // Do something with the data here, e.g., set it to state
       } catch (error) {
         console.error('Error fetching data:', error);
       }
     };
-
     getCityPlaceData();
   }, [id]);
 
@@ -54,10 +49,7 @@ const BlogDetailPage = () => {
         >
           <Image
             height={{ base: "100%", md: "auto" }}
-            // width={{ base: "auto", sm: "100%" }}
-            // src={`/assets/images/blog_0${blogData.blogImage}.jpg`}
             src={blogData.imageKey}
-            // objectFit="cover"
           />
         </Box>
         <Box className="custom__container ">

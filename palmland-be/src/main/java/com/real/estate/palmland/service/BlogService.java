@@ -48,6 +48,15 @@ public class BlogService {
     public void deleteAgent(Integer id){
         blogRepository.deleteById(id);
     }
+    
+    public Blog getBlogById(Integer id){
+        Optional<Blog> blogData=blogRepository.findById(id);
+        Blog blog=blogData.get();
+        if(null!=blog) {
+        	blog.setImageKey(awsURL + "/" + blog.getImageKey().replaceAll("@", "%40"));
+        }
+        return blog;
+    }
 
     public List<Blog> findAllBlogs(Integer pageNo, Integer pageSize, String sortBy){
         Pageable paging= PageRequest.of(pageNo,pageSize, Sort.by(sortBy));
