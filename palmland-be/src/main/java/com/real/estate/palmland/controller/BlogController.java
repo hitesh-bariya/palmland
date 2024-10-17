@@ -62,6 +62,12 @@ public class BlogController {
 		blogService.deleteAgent(id);
 		return new ResponseEntity<>("Blog successfully deleted!", HttpStatus.OK);
 	}
+	
+	@GetMapping("/{id}")
+	public ResponseEntity<Blog> getBlogById(@PathVariable(name = "id") Integer id) {
+		
+		return new ResponseEntity<>(blogService.getBlogById(id), HttpStatus.OK);
+	}
 
 	private Blog prepareEntityObject(BlogRequest blogRequest, MultipartFile multipartFile) throws IOException {
 		Blog blog = new Blog();

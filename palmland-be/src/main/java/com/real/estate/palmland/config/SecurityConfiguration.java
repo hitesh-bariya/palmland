@@ -59,8 +59,8 @@ public class SecurityConfiguration {
                 "/api/v1/property/place",
                 "/api/v1/property/search",
                 "/api/v1/property/images",
-                "api/v1/agent/**",
-                "api/v1/blog/**",
+                "/api/v1/agent/**",
+                "/api/v1/blog/**",
                 "/api/v1/admin/**",
                 "/api/v1/property1/**",
                 "/api/v1/common/**"
