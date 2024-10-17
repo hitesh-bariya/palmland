@@ -85,7 +85,7 @@ const Blog = () => {
                         style={{
                           filter: "brightness(20%)",
                           borderRadius: "7.5px",
-                          maxHeight: "300px",
+                          maxHeight: "350px",
                         }}
                       />
                     </div>

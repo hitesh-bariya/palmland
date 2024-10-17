@@ -48,7 +48,7 @@ const BlogDetailPage = () => {
           className="about__page"
         >
           <Image
-            height={{ base: "100%", md: "auto" }}
+            height={{ base: "100%", md: "100%" }}
             src={blogData.imageKey}
           />
         </Box>
