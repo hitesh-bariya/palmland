@@ -1,5 +1,5 @@
 import colors from "@/theme/foundations/colors";
-import { Text } from "@chakra-ui/react";
+import { Tooltip, Text } from "@chakra-ui/react";
 import React from "react";
 
 function CardTwo({ image }) {
@@ -38,18 +38,22 @@ function CardTwo({ image }) {
         </div>
         <div className="agents__name__listing__block" style={{justifyContent: "center"}}>
           <p className="agents__connects__icons__block" style={{padding: "10px"}}>
-            <img
-              src="/assets/icons/call.svg"
-              alt="call"
-              className="agents__connects__icon"
-              style={{marginLeft: "0", height: "25px", width: "25px", backgroundColor: "#0E303E", borderRadius: "25px", padding: "5px"}}
-            />
-            <img
-              src="/assets/icons/message.svg"
-              alt="message"
-              className="agents__connects__icon"
-              style={{height: "23px", width: "25px", backgroundColor: "#0E303E", borderRadius: "25px", padding: "7px 0px"}}
-            />
+            <Tooltip label='011 971 50 123 4567'>
+              <img
+                src="/assets/icons/call.svg"
+                alt="call"
+                className="agents__connects__icon"
+                style={{marginLeft: "0", height: "25px", width: "25px", backgroundColor: "#0E303E", borderRadius: "25px", padding: "5px"}}
+              />
+            </Tooltip>
+            <Tooltip label='testdemo@gmail.com'>
+              <img
+                src="/assets/icons/email.png"
+                alt="message"
+                className="agents__connects__icon"
+                style={{height: "25px", width: "25px", backgroundColor: "#0E303E", borderRadius: "25px", padding: "4px 4px"}}
+              />
+            </Tooltip>
           </p>
         </div>
       </div>
