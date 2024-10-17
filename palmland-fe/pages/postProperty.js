@@ -178,6 +178,74 @@ const PostProperty = () => {
                       mb="10px"
                       mt="20px"
                     >
+                      Additional Info
+                    </Text>
+                    <SimpleGrid columns={{ base: 1, sm: 1, md: 3 }} spacing={2}>
+                      <FormInput
+                        name="rooms"
+                        type="number"
+                        label="Rooms"
+                        placeholder=""
+                      />
+                      <FormSelect
+                        name="propertyMarquee"
+                        label="Property Marquee"
+                        placeholder=""
+                        options={[
+                          { label: "FEATURED", value: "FEATURED" },
+                          { label: "RECENT", value: "RECENT" },
+                          { label: "UPCOMING", value: "UPCOMING" },
+                        ]}
+                      />
+                      <FormSelect
+                        name="propertyType"
+                        label="Property Type"
+                        placeholder=""
+                        // options={[
+                        //   { label: "", value: "Commercial" },
+                        //   { label: "Residential", value: "Residential" },
+                        //   { label: "Free/Hold", value: "Free/Hold" },
+                        //   { label: "Non Free Hold", value: "Non Free Hold" },
+                        //   { label: "Plots", value: "Plots" },
+                        // ]}
+                        options={[
+                          { label: "commercial", value: "Commercial" },
+                          { label: "mensions", value: "Mensions" },
+                          { label: "farmhouses", value: "Farmhouses" },
+                          { label: "penthouses", value: "Penthouses" },
+                          { label: "townhouses", value: "Townhouses" },
+                          { label: "hotel_apartment", value: "Hotel Apartment" },
+                          { label: "apartment", value: "Apartment" },
+                          { label: "villa", value: "Villa" },
+                          { label: "plots", value: "Plots" },
+                        ]}
+                      />
+                      <Box>
+                        <label htmlFor="file" className="form__label">
+                          Images
+                        </label>
+                        <input
+                          name="file"
+                          type="file"
+                          label="Attachment"
+                          placeholder=""
+                          multiple
+                          value={files}
+                          onChange={(e) => onFileChange(e)}
+                        />
+                        <Text color={"red"} fontSize={"12px"}>
+                          {fileError}
+                        </Text>
+                      </Box>
+                    </SimpleGrid>
+                    
+                    <Text
+                      variant="p_bold"
+                      my="50px 0px 20px"
+                      size={{ base: "16", lg: "18" }}
+                      mb="10px"
+                      mt="20px"
+                    >
                       Address Details
                     </Text>
                     <SimpleGrid columns={{ base: 1, sm: 1, md: 3 }} spacing={2}>
@@ -229,63 +297,6 @@ const PostProperty = () => {
                         placeholder=""
                       />
 
-                    </SimpleGrid>
-
-                    <Text
-                      variant="p_bold"
-                      my="50px 0px 20px"
-                      size={{ base: "16", lg: "18" }}
-                      mb="10px"
-                      mt="20px"
-                    >
-                      Additional Info
-                    </Text>
-                    <SimpleGrid columns={{ base: 1, sm: 1, md: 3 }} spacing={2}>
-                      <FormInput
-                        name="rooms"
-                        type="number"
-                        label="Rooms"
-                        placeholder=""
-                      />
-                      <FormSelect
-                        name="propertyMarquee"
-                        label="Property Marquee"
-                        placeholder=""
-                        options={[
-                          { label: "FEATURED", value: "FEATURED" },
-                          { label: "RECENT", value: "RECENT" },
-                          { label: "UPCOMING", value: "UPCOMING" },
-                        ]}
-                      />
-                      <FormSelect
-                        name="propertyType"
-                        label="Property Type"
-                        placeholder=""
-                        options={[
-                          { label: "Commercial", value: "Commercial" },
-                          { label: "Residential", value: "Residential" },
-                          { label: "Free/Hold", value: "Free/Hold" },
-                          { label: "Non Free Hold", value: "Non Free Hold" },
-                          { label: "Plots", value: "Plots" },
-                        ]}
-                      />
-                      <Box>
-                        <label htmlFor="file" className="form__label">
-                          Images
-                        </label>
-                        <input
-                          name="file"
-                          type="file"
-                          label="Attachment"
-                          placeholder=""
-                          multiple
-                          value={files}
-                          onChange={(e) => onFileChange(e)}
-                        />
-                        <Text color={"red"} fontSize={"12px"}>
-                          {fileError}
-                        </Text>
-                      </Box>
                     </SimpleGrid>
                     <button
                       className="signIn__button"
