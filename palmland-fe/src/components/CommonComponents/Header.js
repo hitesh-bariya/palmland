@@ -18,11 +18,6 @@ export const navLinks = [
     path: "/",
     accesTo: ["USER"],
   },
-  // {
-  //   text: "About",
-  //   path: "/about",
-  //   accesTo: ["USER"],
-  // },
   {
     text: "Services",
     path: "/services",
@@ -55,7 +50,12 @@ export const navLinks = [
   },
   {
     text: "UserList",
-    path: "/UserList",
+    path: "master/UserList",
+    accesTo: ["ADMIN"],
+  },
+  {
+    text: "Master",
+    path: "master/Master",
     accesTo: ["ADMIN"],
   },
   {
@@ -156,18 +156,6 @@ const Header = () => {
                   alt="header-logo"
                 />
               </Link>
-              {/* <Text
-                cursor={"pointer"}
-                onClick={openLogoTourModel}
-                variant={"p_light"}
-                size={{ base: "12", lg: "14" }}
-                color={"white"}
-                textAlign={"center"}
-                m={"10px 0px 0px"}
-                w={"100%"}
-              >
-                Logo Tour
-              </Text> */}
             </Box>
             <Box
               display={{ base: "none", lg: "flex" }}
@@ -202,28 +190,6 @@ const Header = () => {
                 margin="0px 0px 0px 114px"
               >
               </Text>
-
-            {/* </Box>
-            <Box
-              display={"flex"}
-              justifyContent={"space-between"}
-              alignItems={"center"}
-            > */}
-              {/* <Text variant={"p_bold"} color={"white"}>
-                <Text
-                  color={"white"}
-                  variant={"p_regular"}
-                  as={"span"}
-                  p="2px 6px"
-                  bgColor={colors.primary}
-                  borderRadius={"50px"}
-                  mr={"4px"}
-                >
-                  {" "}
-                  2
-                </Text>{" "}
-                My List
-              </Text> */}
               {isloggedIn ? (
                 <>
                   <Text
