@@ -9,7 +9,6 @@ import Image from "next/image";
 function PropertyImagesModel({ setClickable }) {
   const dispatch = useDispatch();
   const modelParams = useSelector((state) => state.model.params);
-  // disable click in model
   const disableClick = (value) => {
     setClickable(value);
   };

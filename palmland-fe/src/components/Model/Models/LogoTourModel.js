@@ -27,9 +27,6 @@ function LogoTourModel({ setClickable }) {
         alignItems={"center"}
         p={{ base: "20px", sm: "30px", lg: "40px" }}
       >
-        {/* <button onClick={() => dispatch(openErrorModel("hello"))}>
-            <h1>X</h1>
-          </button> */}
         <Text
           variant="p_bold"
           size={{ base: "18", lg: "24" }}

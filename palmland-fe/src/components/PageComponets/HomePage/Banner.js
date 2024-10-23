@@ -73,7 +73,6 @@ function Banner() {
       <Box className="banner__block">
         <video autoPlay loop muted preload="yes" className="banner__video">
           <source
-            // src="https://res.cloudinary.com/demo/video/upload/y3qfje5fcjkskqaufc08.mp4"
             src="/assets/videos/banner_video.mp4"
             type="video/mp4"
           ></source>
@@ -84,7 +83,6 @@ function Banner() {
           </Text>
           <Text
             variant={"s_light"}
-            // color={colors.secondary_color_shade_four}
             size="18"
           >
             Find new & featured property located in your local city.

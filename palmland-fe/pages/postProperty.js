@@ -38,7 +38,6 @@ const PostProperty = () => {
   }, [fileObject]);
 
   const onPropertySubmit = (propertyData, file) => {
-    debugger
     if (!error) {
       var form = new FormData();
       for (let i = 0; i < fileObject.length; i++) {
@@ -114,11 +113,6 @@ const PostProperty = () => {
                   .max(7, "Invalid pincode")
                   .required("Required")
                   .nullable(),
-                location: Yup.string()
-                  .trim()
-                  .min(3, "Must be 3 characters or more")
-                  .required("Required")
-                  .nullable(),
                 rooms: Yup.number().required("Required"),
               })}
               onSubmit={(values, actions) => {
@@ -131,7 +125,7 @@ const PostProperty = () => {
                     addressLine2: values.addressLine2,
                     landMark: values.landMark,
                     pinCode: values.pinCode,
-                    location: values.location,
+                    // location: values.location,
                     country: values.country,
                   },
                   propertyMarquee: values.propertyMarquee,
@@ -144,7 +138,7 @@ const PostProperty = () => {
                 actions.setSubmitting(false);
               }}
             >
-              {({setFieldValue, values}) => (
+              {({ setFieldValue, values }) => (
                 <Form>
                   <Box display="flex" flexDirection={"column"}>
                     <Text
@@ -176,69 +170,13 @@ const PostProperty = () => {
                         placeholder=""
                       />
                     </SimpleGrid>
-
+                    <hr></hr>
                     <Text
                       variant="p_bold"
                       my="50px 0px 20px"
                       size={{ base: "16", lg: "18" }}
                       mb="10px"
-                      mt="20px"
-                    >
-                      Address Details
-                    </Text>
-                    <SimpleGrid columns={{ base: 1, sm: 1, md: 3 }} spacing={2}>
-                      <FormInput
-                        name="addressLine1"
-                        type="text"
-                        label="Address Line 1"
-                        placeholder=""
-                      />
-                      <FormInput
-                        name="addressLine2"
-                        type="text"
-                        label="Address Line 2"
-                        placeholder=""
-                      />
-                      <FormInput
-                        name="landMark"
-                        type="text"
-                        label="Landmark"
-                        placeholder=""
-                      />
-                      <FormInput
-                        name="pinCode"
-                        type="number"
-                        label="Pincode"
-                        placeholder=""
-                      />
-                      {/* Adding LocationSearch component */}
-                      {/* <GridItem 
-                        colSpan={3}
-                      > */}
-                      <Box 
-                        className="post_property_location_search"
-                      >
-                        <label for="addressLine1" className="form__label">
-                          Location
-                        </label>
-                        <LocationSearch
-                          currentState={values.state}
-                          currentCity={values.city}
-                          searchLocation={values.location}
-                          suggestions={suggestions}
-                          onLocationChange={(loc) => setFieldValue("location", loc)}
-                          onOptionSelect={(loc) => setFieldValue("location", loc)}
-                        />
-                      </Box>
-                      {/* </GridItem> */}
-                    </SimpleGrid>
-
-                    <Text
-                      variant="p_bold"
-                      my="50px 0px 20px"
-                      size={{ base: "16", lg: "18" }}
-                      mb="10px"
-                      mt="20px"
+                      mt="10px"
                     >
                       Additional Info
                     </Text>
@@ -264,11 +202,15 @@ const PostProperty = () => {
                         label="Property Type"
                         placeholder=""
                         options={[
-                          { label: "Commercial", value: "Commercial" },
-                          { label: "Residential", value: "Residential" },
-                          { label: "Free/Hold", value: "Free/Hold" },
-                          { label: "Non Free Hold", value: "Non Free Hold" },
-                          { label: "Plots", value: "Plots" },
+                          { label: "commercial", value: "Commercial" },
+                          { label: "mensions", value: "Mensions" },
+                          { label: "farmhouses", value: "Farmhouses" },
+                          { label: "penthouses", value: "Penthouses" },
+                          { label: "townhouses", value: "Townhouses" },
+                          { label: "hotel_apartment", value: "Hotel Apartment" },
+                          { label: "apartment", value: "Apartment" },
+                          { label: "villa", value: "Villa" },
+                          { label: "plots", value: "Plots" },
                         ]}
                       />
                       <Box>
@@ -282,12 +224,73 @@ const PostProperty = () => {
                           placeholder=""
                           multiple
                           value={files}
+                          style={{marginBottom: "10px"}}
                           onChange={(e) => onFileChange(e)}
                         />
                         <Text color={"red"} fontSize={"12px"}>
                           {fileError}
                         </Text>
                       </Box>
+                    </SimpleGrid>
+                    <hr></hr>
+                    <Text
+                      variant="p_bold"
+                      my="50px 0px 20px"
+                      size={{ base: "16", lg: "18" }}
+                      mb="10px"
+                      mt="10px"
+                    >
+                      Address Details
+                    </Text>
+                    <SimpleGrid columns={{ base: 1, sm: 1, md: 3 }} spacing={2}>
+                      <Box
+                        className="post_property_location_search"
+                      >
+                        <label for="addressLine1" className="form__label">
+                          Address Line 1
+                        </label>
+                        <LocationSearch
+                          currentState={values.state}
+                          currentCity={values.city}
+                          searchLocation={values.addressLine1}
+                          suggestions={suggestions}
+                          onLocationChange={(loc) => setFieldValue("addressLine1", loc)}
+                          onOptionSelect={(loc) => setFieldValue("addressLine1", loc)}
+                        />
+                      </Box>
+                      <FormInput
+                        name="addressLine2"
+                        type="text"
+                        label="Address Line 2"
+                        placeholder=""
+                      />
+                      <FormInput
+                        name="landMark"
+                        type="text"
+                        label="Landmark"
+                        placeholder=""
+                      />
+                      <FormInput
+                        name="pinCode"
+                        type="number"
+                        label="Pincode"
+                        placeholder=""
+                      />
+
+                      <FormInput
+                        name="city"
+                        type="number"
+                        label="city"
+                        placeholder=""
+                      />
+
+                      <FormInput
+                        name="country"
+                        type="number"
+                        label="country"
+                        placeholder=""
+                      />
+
                     </SimpleGrid>
                     <button
                       className="signIn__button"

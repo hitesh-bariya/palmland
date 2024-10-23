@@ -25,15 +25,7 @@ function Agents() {
             color= "#ECF2F8"
             lineHeight= "72px"
           />
-          {/* <p className="agents__section__title">Our Agents</p> */}
           <div className="row agents__card__container agent-slider">
-            {/* {[1, 2, 3, 4, 5, 6, 1, 2, 3, 4, 5, 6].map((ele) => {
-              return (
-                <div className="col-6 col-sm-4 col-md-3 col-lg-2 agents__card__block">
-                  <CardTwo image={ele} />
-                </div>
-              );
-            })} */}
             <Slider {...settings}>
                 {[1, 2, 3, 4, 5, 6, 1, 2, 3, 4, 5, 6].map((ele) => {
                   return(

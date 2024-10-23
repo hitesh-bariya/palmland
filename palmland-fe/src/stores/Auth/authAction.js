@@ -39,7 +39,6 @@ export const signup = (data) => {
               role: response.data.role,
             })
           );
-          // console.log(response.data);
         });
     } catch (err) {
       console.log("error", err);

@@ -17,7 +17,6 @@ import { signin } from "@/stores/Auth/authAction";
 function SignInModel({ setClickable }) {
   const dispatch = useDispatch();
 
-  // disable click in model
   const disableClick = (value) => {
     setClickable(value);
   };
@@ -52,7 +51,6 @@ function SignInModel({ setClickable }) {
           onSubmit={(values, actions) => {
             setTimeout(() => {
               dispatch(signin(values));
-              // alert(JSON.stringify(values, null, 2));
               actions.setSubmitting(false);
             }, 1000);
           }}

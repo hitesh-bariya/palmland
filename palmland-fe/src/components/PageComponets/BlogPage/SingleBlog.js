@@ -46,20 +46,6 @@ const SingleBlog = ({ blog }) => {
             {blog.heading}
           </Text>
           <Box display="flex" alignItems="center">
-            {/* <Box
-              borderRadius="full"
-              overflow="hidden"
-              height="50px"
-              minW="50px"
-              border="2px solid #eab258"
-              mr="10px"
-            >
-              <Image
-                src={`/assets/images/agents_0${blog.userImage}.png`}
-                w={"100%"}
-                h={"100%"}
-              />
-            </Box> */}
             <AtSignIcon />
             <Text variant="s_light" size="16" margin="0px 0px 0px 5px">
               {blog.author}
@@ -86,16 +72,12 @@ const SingleBlog = ({ blog }) => {
             size="14"
             margin="10px 0px 10px"
             noOfLines={3}
-            //   isTruncated
           >
             {blog.content}
           </Text>
         </Box>
         <Box display="flex" justifyContent="space-between">
           <Link href={`/blog/${blog.id}`} as={`/blog/${blog.id}`}>
-            {/* <Button variant="primary" size="14">
-              Read More
-            </Button> */}
           </Link>
           <Box display="flex" alignItems="center">
             <ChatIcon ml="20px" />
