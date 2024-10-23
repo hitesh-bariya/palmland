@@ -201,13 +201,6 @@ const PostProperty = () => {
                         name="propertyType"
                         label="Property Type"
                         placeholder=""
-                        // options={[
-                        //   { label: "", value: "Commercial" },
-                        //   { label: "Residential", value: "Residential" },
-                        //   { label: "Free/Hold", value: "Free/Hold" },
-                        //   { label: "Non Free Hold", value: "Non Free Hold" },
-                        //   { label: "Plots", value: "Plots" },
-                        // ]}
                         options={[
                           { label: "commercial", value: "Commercial" },
                           { label: "mensions", value: "Mensions" },

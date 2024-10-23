@@ -74,11 +74,7 @@ const PropertyDealerRegisterForm = ({ setClickable }) => {
       className="model__container"
     >
       <div className="inner__model">
-        {/* <button onClick={() => dispatch(openErrorModel("hello"))}>
-            <h1>X</h1>
-          </button> */}
         <p className="model__title">Register Now</p>
-        {/* <p className="model__text">Register your self</p> */}
         <form onSubmit={handleSubmit} className="signIn__form">
           <div className="form__field__container">
             <div className="form__field__block">

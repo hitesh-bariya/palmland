@@ -18,13 +18,6 @@ function CardTwo({ image }) {
           <Text variant={"p_regular"} color={"white"} size={"md"} style={{lineHeight:"25px"}}>
             Sargam Singh
           </Text>
-          {/* <Text
-            variant={"s_bold"}
-            color={colors.secondary_color_shade_two}
-            size={"sm"}
-          >
-            70
-          </Text> */}
         </div>
         <div className="">
           <Text
