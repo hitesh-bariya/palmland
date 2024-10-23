@@ -7,7 +7,6 @@ const settings = {
   speed: 500,
   slidesToShow: 1,
   arrows: true,
-  // slidesToScroll: 1
 };
 function Corousal({ containerClassName, sectionTitle }) {
   const [arrowState, setArrowState] = useState(true);
