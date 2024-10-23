@@ -34,9 +34,6 @@ function SignUpModel({ setClickable }) {
       className="model__container"
     >
       <div className="inner__model">
-        {/* <button onClick={() => dispatch(openErrorModel("hello"))}>
-          <h1>X</h1>
-        </button> */}
         <p className="model__title">SIGN UP</p>
         <p className="model__text">Register your self</p>
         <Formik
@@ -68,10 +65,8 @@ function SignUpModel({ setClickable }) {
               .required("Required"),
           })}
           onSubmit={(values, actions) => {
-            // console.log("values===>", values);
             setTimeout(() => {
               dispatch(signup(values));
-              // alert(JSON.stringify(values, null, 2));
               actions.setSubmitting(false);
             }, 1000);
           }}
@@ -107,15 +102,6 @@ function SignUpModel({ setClickable }) {
                   placeholder=""
                   isPassword={true}
                 />
-                {/* <FormSelect
-                  name="role"
-                  label="User Type"
-                  placeholder=""
-                  options={[
-                    { label: "User", value: "USER" },
-                    { label: "Property Dealer", value: "DEALER" },
-                  ]}
-                /> */}
                 <PhoneInput
                   name="phoneNo"
                   label="Phone Number"
